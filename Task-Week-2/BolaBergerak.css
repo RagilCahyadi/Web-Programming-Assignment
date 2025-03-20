@@ -1,0 +1,54 @@
+body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.canvas{
+    position: relative;
+    width: 700px;
+    height: 400px;
+    background-color: green;
+    border-radius: 10px;
+}
+
+.bola{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #eaeaea;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: bola-bergerak 5s linear forwards;
+}
+
+@keyframes bola-bergerak {
+    0% {
+        top:15px;
+        left:15px;
+    }   
+
+    25%{
+        left: calc(100% - 15px);
+        top: 15px;
+    } 
+    
+    50% {
+        left: calc(100% - 15px);
+        top: calc(100% - 15px);
+    }
+    
+    75% {
+        left: 15px;
+        top: calc(100% - 15px);
+    }
+
+    100% {
+        left: 15px;
+        top: calc(100% - 15px);
+        opacity: 0;
+    }
+}
