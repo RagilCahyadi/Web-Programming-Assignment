@@ -5,4 +5,4 @@
 3. **Ruziqna Hadikafilardi Muhtarom** (3012310039)  
 
 ## Web Programming Universitas Internasional Semen Indonesia 2025
-Instructor : **As'ad Roysadi**
+Lecturer : **As'ad Roysadi**
