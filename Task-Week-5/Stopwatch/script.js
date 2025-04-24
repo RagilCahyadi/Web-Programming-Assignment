@@ -29,7 +29,7 @@ function drawTime() {
   const centerY = canvas.height / 2;
 
   const fragments = [
-    { text: h, color: "blue" },
+    { text: h, color: "purple" },
     { text: ":", color: "black" },
     { text: m, color: "orange" },
     { text: ":", color: "black" },
