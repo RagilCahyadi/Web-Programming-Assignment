@@ -5,7 +5,7 @@ let startTime = null;
 let elapsedTime = 0;
 let timerInterval = null;
 
-ctx.font = "bold 60px Roboto";
+ctx.font = "bold 60px Arial";
 
 function drawTime() {
   let time = elapsedTime;
