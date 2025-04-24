@@ -27,7 +27,7 @@ function animate() {
 
   if (direction === "right") {
     x += dx;
-    if (x + radius >= canvas.width) {
+    if (x + radius > canvas.width) {
       direction = "down";
     }
   } else if (direction === "down") {
@@ -37,7 +37,7 @@ function animate() {
     }
   } else if (direction === "left") {
     x -= dx;
-    if (x - radius <= 0) {
+    if (x + radius < 0) {
       cancelAnimationFrame(anim);
       return; 
     }
