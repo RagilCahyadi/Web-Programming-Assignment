@@ -6,35 +6,30 @@
     <title>Kalender</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-        
-        @keyframes slideInFromLeft {
+
+        @keyframes cellRollUp {
             from {
                 opacity: 0;
-                transform: translateX(-100%);
+                transform: translateY(20px) scaleY(0.6);
+                transform-origin: bottom;
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0) scaleY(1);
+                transform-origin: bottom;
             }
         }
 
-        @keyframes slideInFromRight {
+        @keyframes cellRollDown {
             from {
                 opacity: 0;
-                transform: translateX(100%);
+                transform: translateY(-20px) scaleY(0.6);
+                transform-origin: top;
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInOnLoad {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
+                transform: translateY(0) scaleY(1);
+                transform-origin: top;
             }
         }
 
@@ -59,23 +54,13 @@
             background-image: url('https://static.vecteezy.com/system/resources/previews/024/031/869/non_2x/seascape-sunset-lo-fi-chill-wallpaper-sunrise-ocean-waves-ocean-coast-sun-and-sand-2d-cartoon-landscape-illustration-vaporwave-background-80s-retro-album-art-synthwave-aesthetics-vector.jpg');
             background-size: cover;
             background-position: center;
-            overflow-x: hidden;
+            overflow-x: hidden; 
         }
 
         .calendar-canvas-wrapper {
             position: relative; 
         }
         
-        .calendar-canvas-wrapper.animate-slide-from-left {
-            animation: slideInFromLeft 0.5s ease-out forwards;
-        }
-        .calendar-canvas-wrapper.animate-slide-from-right {
-            animation: slideInFromRight 0.5s ease-out forwards;
-        }
-        .calendar-canvas-wrapper.animate-fade-in {
-            animation: fadeInOnLoad 0.7s ease-out forwards;
-        }
-
         #calendarDrawingCanvas {
             display: block;
             border: 1px solid #e0e0e0; 
@@ -128,7 +113,7 @@
 
         .month-header h2 {
             margin: 0 8px; 
-            font-size: 1em; 
+            font-size: 1.1em; 
             color: #333;
             font-weight: 600; 
             white-space: nowrap;
@@ -157,12 +142,20 @@
             background-color: #f0f0f0;
             color: #333;
             font-weight: bold; 
-            font-size: 0.8em; 
+            font-size: 0.9em; 
         }
 
         td {
             font-size: 0.95em; 
             position: relative; 
+            overflow: hidden;
+        }
+        
+        tbody.animate-cells-roll-up td:not(.empty) {
+            animation: cellRollUp 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        tbody.animate-cells-roll-down td:not(.empty) {
+            animation: cellRollDown 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
         
         td:not(.empty):not(.today) {
@@ -203,12 +196,12 @@
 </head>
 <body>
     <?php
-        $animation_class = 'animate-fade-in';
+        $tbody_animation_class = '';
         if (isset($_GET['nav'])) {
             if ($_GET['nav'] === 'next') {
-                $animation_class = 'animate-slide-from-left';
+                $tbody_animation_class = 'animate-cells-roll-up';
             } elseif ($_GET['nav'] === 'prev') {
-                $animation_class = 'animate-slide-from-right';
+                $tbody_animation_class = 'animate-cells-roll-down';
             }
         }
 
@@ -255,7 +248,7 @@
         $nextLink = "?month={$nextMonthNav}&year={$nextYearNav}&nav=next";
     ?>
 
-    <div class="calendar-canvas-wrapper <?php echo $animation_class; ?>">
+    <div class="calendar-canvas-wrapper">
         <canvas id="calendarDrawingCanvas" width="480" height="420"></canvas>
         <div class="calendar-php-content"> 
             <div class="month-header">
@@ -272,7 +265,7 @@
                         <?php endforeach; ?>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="<?php echo $tbody_animation_class; ?>">
                     <?php
                         for ($row = 0; $row < 6; $row++) {
                             echo '<tr>';
