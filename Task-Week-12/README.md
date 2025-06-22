@@ -13,6 +13,17 @@
 - **2**: **Rahmansyah Ragil Cahyadi** (3012310034)  
 - **3**: **Ruziqna Hadikafilardi Muhtarom** (3012310039)
 
+## 🎯 Tugas Pertemuan ke-12 dan 13 
+
+- **1**: Buat CRUD dengan Refresh (Synchronous) minimal 5 item
+```bash
+http://127.0.0.1:8000/buku
+```  
+- **2**: Buat CRUD tanpa Refresh (AJAX/Asynchronous)  minimal 5 item
+```bash
+http://127.0.0.1:8000/bengkel
+```  
+
 ## 📋 Deskripsi Aplikasi
 
 Aplikasi web berbasis Laravel 12 yang menyediakan sistem manajemen data untuk:
