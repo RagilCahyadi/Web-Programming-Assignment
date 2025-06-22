@@ -104,11 +104,6 @@ DB_PASSWORD=password_database
 
 ### 4. Setup Database
 
-#### Buat database baru (MySQL)
-```sql
-CREATE DATABASE nama_database_anda;
-```
-
 #### Jalankan migrasi
 ```bash
 php artisan migrate
