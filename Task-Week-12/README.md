@@ -25,10 +25,10 @@ Aplikasi ini menggunakan modular architecture dengan Laravel Modules dan dilengk
 
 ## 🛠️ Teknologi yang Digunakan
 
-- **Backend**: Laravel 12.x
-- **Frontend**: Blade Templates + Tailwind CSS 4.x
+- **Backend**: Laravel 12
+- **Frontend**: Blade Templates + Tailwind CSS 4
 - **Database**: MySQL/PostgreSQL/SQLite (configurable)
-- **Build Tool**: Vite 6.x
+- **Build Tool**: Vite 6
 - **Package Manager**: Composer + NPM
 - **Modular Architecture**: Laravel Modules (nwidart/laravel-modules)
 
@@ -38,8 +38,8 @@ Pastikan sistem Anda memiliki persyaratan berikut sebelum instalasi:
 
 - **PHP**: >= 8.2
 - **Composer**: >= 2.0
-- **Node.js**: >= 18.x
-- **NPM**: >= 9.x
+- **Node.js**: >= 18
+- **NPM**: >= 9
 - **Database**: MySQL >= 8.0 / PostgreSQL >= 13 / SQLite
 - **Web Server**: Apache/Nginx (untuk production)
 
@@ -47,10 +47,26 @@ Pastikan sistem Anda memiliki persyaratan berikut sebelum instalasi:
 
 ### 1. Clone Repository
 
+#### Metode 1: Clone Seluruh Repository (Direkomendasikan)
 ```bash
-git clone https://github.com/username/aplikasi-laravel.git
-cd aplikasi-laravel
+git clone https://github.com/RagilCahyadi/Web-Programming-Assignment.git
+cd Web-Programming-Assignment/Task-Week-12
 ```
+
+#### Metode 2: Clone dengan Sparse Checkout (Hanya folder Task-Week-12)
+```bash
+git clone --filter=blob:none --sparse https://github.com/RagilCahyadi/Web-Programming-Assignment.git
+cd Web-Programming-Assignment
+git sparse-checkout set Task-Week-12
+cd Task-Week-12
+```
+
+#### Metode 3: Download ZIP
+Jika tidak ingin menggunakan Git:
+1. Kunjungi: https://github.com/RagilCahyadi/Web-Programming-Assignment
+2. Klik tombol **Code** → **Download ZIP**
+3. Extract file ZIP
+4. Masuk ke folder `Task-Week-12`
 
 ### 2. Install Dependencies
 
