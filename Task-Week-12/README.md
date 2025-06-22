@@ -18,8 +18,8 @@
 Aplikasi web berbasis Laravel 12 yang menyediakan sistem manajemen data untuk:
 - **Kontak** - Manajemen data kontak
 - **Mahasiswa** - Sistem informasi mahasiswa  
-- **Buku** - Katalog dan manajemen buku
-- **Bengkel** - Informasi bengkel
+- **Buku** -  Manajemen buku
+- **Bengkel** - Informasi Manajemen Barang Bengkel
 
 Aplikasi ini menggunakan modular architecture dengan Laravel Modules dan dilengkapi dengan Tailwind CSS untuk antarmuka yang modern.
 
