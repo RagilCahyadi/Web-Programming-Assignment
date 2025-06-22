@@ -7,6 +7,12 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## 👥 Daftar Anggota Kelompok  
+
+- **1**: **Muhammad Amirun Nadhif** (3012310019)
+- **2**: **Rahmansyah Ragil Cahyadi** (3012310034)  
+- **3**: **Ruziqna Hadikafilardi Muhtarom** (3012310039)
+
 ## 📋 Deskripsi Aplikasi
 
 Aplikasi web berbasis Laravel 12 yang menyediakan sistem manajemen data untuk:
@@ -137,130 +143,7 @@ php artisan cache:clear
 php artisan config:clear
 php artisan route:clear
 php artisan view:clear
-```
-
-### Module Commands
-Aplikasi ini menggunakan Laravel Modules. Beberapa command yang berguna:
-
-```bash
-# List semua modules
-php artisan module:list
-
-# Enable module
-php artisan module:enable ModuleName
-
-# Disable module
-php artisan module:disable ModuleName
-```
-
-## 📁 Struktur Direktori
-
-```
-├── app/                    # Core aplikasi
-│   ├── Http/Controllers/   # Controllers
-│   ├── Models/            # Eloquent models
-│   └── Providers/         # Service providers
-├── Modules/               # Modular components
-│   └── Pendaftaran/       # Module pendaftaran
-├── database/              # Database files
-│   ├── migrations/        # Database migrations
-│   └── seeders/          # Database seeders
-├── resources/             # Frontend resources
-│   ├── views/            # Blade templates
-│   ├── css/              # Stylesheets
-│   └── js/               # JavaScript files
-├── routes/                # Route definitions
-└── public/               # Public assets
-```
-
-## 🌐 Deployment ke Production
-
-### 1. Server Requirements
-- PHP 8.2+ dengan extensions yang diperlukan
-- Composer
-- Node.js & NPM
-- Web server (Apache/Nginx)
-- Database server
-
-### 2. Environment Production
-```bash
-# Set environment ke production
-APP_ENV=production
-APP_DEBUG=false
-
-# Build assets untuk production
-npm run build
-
-# Optimize aplikasi
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-```
-
-### 3. Web Server Configuration
-
-#### Apache (.htaccess sudah tersedia)
-Pastikan mod_rewrite aktif dan document root menuju ke folder `public/`
-
-#### Nginx
-```nginx
-server {
-    listen 80;
-    server_name your-domain.com;
-    root /path/to/your/project/public;
-    
-    index index.php index.html;
-    
-    location / {
-        try_files $uri $uri/ /index.php?$query_string;
-    }
-    
-    location ~ \.php$ {
-        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
-        fastcgi_index index.php;
-        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
-        include fastcgi_params;
-    }
-}
-```
-
-## 🐛 Troubleshooting
-
-### Permission Issues (Linux/Mac)
-```bash
-sudo chown -R www-data:www-data storage bootstrap/cache
-sudo chmod -R 775 storage bootstrap/cache
-```
-
-### Composer Issues
-```bash
-composer dump-autoload
-composer install --no-dev --optimize-autoloader
-```
-
-### NPM Issues
-```bash
-rm -rf node_modules package-lock.json
-npm install
-```
-
-## 📝 Contributing
-
-1. Fork repository
-2. Buat branch feature (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add some amazing feature'`)
-4. Push ke branch (`git push origin feature/amazing-feature`)
-5. Buat Pull Request
-
-## 📄 License
-
-Aplikasi ini menggunakan lisensi [MIT License](https://opensource.org/licenses/MIT).
-
-## 👥 Tim Pengembang
-
-- **Developer**: [Nama Anda]
-- **Email**: [email@example.com]
-- **GitHub**: [username]
+```  
 
 ## 🔗 Links
 
