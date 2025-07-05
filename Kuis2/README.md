@@ -7,6 +7,8 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## JOB SEEKER PLATFORM
+
 ## 👥 Daftar Anggota Kelompok  
 
 - **1**: **Muhammad Amirun Nadhif** (3012310019)
