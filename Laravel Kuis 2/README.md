@@ -7,6 +7,12 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## 👥 Daftar Anggota Kelompok  
+
+- **1**: **Muhammad Amirun Nadhif** (3012310019)
+- **2**: **Rahmansyah Ragil Cahyadi** (3012310034)  
+- **3**: **Ruziqna Hadikafilardi Muhtarom** (3012310039)
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
