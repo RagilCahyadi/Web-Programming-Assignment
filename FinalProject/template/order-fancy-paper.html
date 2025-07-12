@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--FavIcon-->
+    <link
+      rel="shortcut icon"
+      href="./assets/2.png"
+      type="image/x-icon"
+    />
+    <!--FavIcon-->
+
+    <title>RNR Digital Printing</title>
+
+    <!--CSS-->
+    <link rel="stylesheet" href="./css/style.css" />
+    <!--CSS-->
+    
+    <!-- Font -->
+     <link rel="stylesheet" href="">
+    <!-- Font -->
+
+    <!-- Animate Css -->
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Animate Css -->
+
+    <!-- Animate Scroll CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Animate Scroll CSS -->
+
+    <!--Bootstraps CSS-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+    <!--Bootstraps CSS-->
+
+    <style>
+        .detail-product{
+            text-align: justify;
+        }
+
+        .product-form{
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          background-color: #f9f9f9;
+        }
+
+        .checkout-summary{
+          background-color: #e9ecef;
+          padding: 20px;
+          border: 1px solid #ced4da;
+          border-radius: 5px;
+        }
+
+        .price-breakdown{
+          list-style-type: none;
+          padding-left: 0;
+          margin-bottom: 0.75rem;
+        }
+
+         .price-breakdown li {
+             display: flex;
+             justify-content: space-between;
+             align-items: flex-start;
+             margin-bottom: 5px;
+             padding-bottom: 5px;
+             border-bottom: 1px dotted #a7c2a7;
+             font-size: 0.9rem;
+         }
+
+         .price-breakdown li span{
+          word-break: break-word;
+         }
+
+         .price-breakdown li span:first-child{
+          margin-right: 15px;
+         }
+
+         .price-breakdown li span:last-child{
+          text-align: right;
+          font-weight: 500;
+         }
+
+         .price-breakdown li:last-child {
+             border-bottom: none;
+             margin-top: 10px;
+             padding-top: 10px;
+             font-size: 1.05rem;
+             font-weight: bold;
+             border-top: 1px solid #a7c2a7;
+         }
+          .price-breakdown li span:first-child {
+              font-weight: normal;
+          }
+          .price-breakdown li:last-child span {
+               font-weight: bold; 
+          }
+
+           .price-summary > small.text-muted { 
+            text-align: center; 
+            display: block; 
+            font-size: 0.8rem; 
+            line-height: 1.4;  
+        }
+
+        @media (max-width: 576px) {
+            .price-summary {
+                max-width: 100%; 
+                padding-left: 5px; 
+                padding-right: 5px;
+            }
+            .price-breakdown li {
+                font-size: 0.85rem;
+            }
+            .price-breakdown li:last-child {
+                font-size: 1rem;
+            }
+            .price-summary > small.text-muted {
+                font-size: 0.75rem;
+            }
+        }
+
+           @media (max-width: 575.98px) {
+            #navbar-detail-product .nav-pills.flex-column .nav-item {
+              width: 100%; 
+              margin-bottom: 0.35rem; 
+            }
+            #navbar-detail-product .nav-pills.flex-column .nav-item:last-child {
+              margin-bottom: 0;
+            }
+            #navbar-detail-product .nav-pills.flex-column .nav-link {
+              text-align: center;
+              padding-top: 0.5rem;   
+              padding-bottom: 0.5rem;
+              padding-left: 100px;
+              padding-right: 100px;
+              font-size: 0.9rem;   
+            }
+          }
+
+          @media (min-width: 576px) and (max-width: 767.98px) {
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-item {
+              width: 100%; 
+              margin-bottom: 0.35rem; 
+            }
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-item:last-child {
+              margin-bottom: 0; 
+            }
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-link {
+              text-align: center; 
+              padding-top: 0.4rem;
+              padding-bottom: 0.4rem;
+              font-size: 0.875rem;
+            }
+          }
+
+
+          @media (min-width: 768px) and (max-width: 991.98px) {
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-item {
+              width: auto; 
+              margin-bottom: 0; 
+            }
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-item:not(:last-child) {
+              margin-right: 0.25rem; 
+            }
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-link {
+              padding-left: 0.6rem;
+              padding-right: 0.6rem;
+              padding-top: 0.4rem;
+              padding-bottom: 0.4rem;
+              font-size: 0.8rem;
+              white-space: nowrap; 
+              text-align: center;     
+            }
+          }
+
+
+          @media (min-width: 992px) {
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-item {
+              width: auto; 
+              margin-bottom: 0; 
+            }
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-item:not(:last-child) {
+              margin-right: 0.5rem; 
+            }
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-link {
+              padding-left: 1rem;
+              padding-right: 1rem;
+              padding-top: 0.5rem;
+              padding-bottom: 0.5rem;
+              font-size: 0.9rem;
+              white-space: normal; 
+              text-align: center;   
+            }
+          }
+        
+    </style>
+
+  </head>
+<body>
+
+  
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary py-3 animate__animated animate__fadeInDown">
+      <div class="container">
+        <a class="navbar-brand animate__animated animate__fadeInLeft animate__delay-1s" href="index.html">
+          <img
+            src="./assets/2.png"
+            alt="Logo"
+            width="30"
+            height="24"
+            class="d-inline-block align-text-top"
+          />
+          <span class="fs-3 fw-bold text-white">RNR Digital Printing</span>
+        </a>
+        <button
+          class="navbar-toggler bg-white shadow-none"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto d-flex gap-2 text-center pt-lg-0 pt-4">
+            <li class="nav-item">
+              <a class="nav-link fw-bold text-white" href="index.html#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold text-white" href="index.html#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold text-white" href="index.html#order-guide">How To Order</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold text-white" href="index.html#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold text-white" href="index.html#faq">FAQ</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar -->
+
+    <section class="order-page-section">
+        <div class="container">
+            <h1 class="display-5 fw-bold text-center mb-5">Halaman Pemesanan Fancy Paper</h1>
+            <div class="row g-4">
+                <div class="col-md-6">
+
+                    <!-- Carousel -->
+                    <div id="fancyPaperCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#fancyPaperCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#fancyPaperCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#fancyPaperCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#fancyPaperCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                            <img src="./assets/Linen-FancyPaper.jpg" class="d-block w-100" alt="Linen Fancy Paper Image">
+                            </div>
+                            <div class="carousel-item">
+                            <img src="./assets/Jasmine-FancyPaper.jpg" class="d-block w-100" alt="Jasmine Fancy Paper Image">
+                            </div>
+                            <div class="carousel-item">
+                            <img src="./assets/Concorde-FancyPaper.jpg" class="d-block w-100" alt="Concorde Fancy Paper Image">
+                            </div>
+                            <div class="carousel-item">
+                            <img src="./assets/Hammer-FancyPaper.jpg" class="d-block w-100" alt="Hammer Fancy Paper Image">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#fancyPaperCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#fancyPaperCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <!-- Carousel -->
+
+                    <div class="detail-product mt-5 text-justify">
+                      <nav id="navbar-detail-product" class="navbar navbar-light bg-light px-3 ">
+                        <a class="navbar-brand" href="#"></a>
+                        <ul class="nav nav-pills flex-column flex-sm-row flex-wrap mx-auto mb">
+                          <li class="nav-item">
+                            <a class="nav-link" href="#scrollspyHeading1">Detail Product</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#scrollspyHeading2">Jenis Product</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#scrollspyHeading3">Tipe Desain</a>
+                          </li>
+                        </ul>
+                      </nav>
+                 
+                  <div data-bs-spy="scroll" data-bs-target="#navbar-detail-product" data-bs-offset="0" class="scrollspy-example mt-5" tabindex="0">
+                    <h4 id="scrollspyHeading1">Detail Produk Cetak Fancy Paper</h4>
+                      <p class="lh-lg">
+                        Cetak Fancy Paper adalah pilihan tepat untuk memberikan kesan mewah dan eksklusif pada cetakan Anda. Berbeda dari kertas HVS atau Art Paper biasa, Fancy Paper memiliki tekstur, corak, atau efek khusus yang unik. Layanan kami mencakup cetak pada berbagai jenis Fancy Paper seperti Linen (bertekstur seperti kain), Jasmine (dengan kilau mutiara), Concorde (bertekstur garis), Hammer (bertekstur seperti permukaan palu), dan jenis eksklusif lainnya sesuai ketersediaan.
+                      </p>
+                      <p class="lh-lg">
+                        Sangat cocok digunakan untuk:
+                      </p>
+                      <ul class="mb-5">
+                        <li>Undangan Pernikahan atau Acara Spesial</li>
+                        <li>Kartu Nama Premium</li>
+                        <li>Sertifikat atau Piagam Eksklusif</li>
+                        <li>Kartu Ucapan atau Greeting Card</li>
+                        <li>Kop Surat atau Amplop Premium</li>
+                        <li>Flyer atau Brosur yang Ingin Tampil Beda</li>
+                      </ul>
+                    <h4 id="scrollspyHeading2">Jenis-Jenis Fancy Paper</h4>
+                     <p class="lh-lg">
+                        Kami menggunakan teknologi cetak digital terbaru untuk menghasilkan detail tajam dan warna yang akurat di atas permukaan Fancy Paper. Upload desain Anda dalam format yang direkomendasikan (PDF, AI, CDR) untuk hasil optimal. Jika Anda membutuhkan ukuran custom atau finishing tambahan seperti pond (cutting bentuk) atau hot foil, silakan cantumkan di catatan tambahan atau hubungi tim kami.
+                     </p>
+                      <ul class="mb-5">
+                              <li><b>Linen: </b>permukaan menyerupai kain linen, mem berikan kesan klasik dan elegan.</li>
+                              <li><b>Jasmine: </b>Permukaan halus dengan kilau mutiara, terlihat mewah dan berkilau.</li>
+                              <li><b>Concorde: </b>Tekstur garis-garis sejajar yang halus, memberikan sentuhan profesional.</li>
+                              <li><b>Hammer: </b>Tekstur unik seperti bekas pukulan palu, memberikan kesan artistik.</li>
+                      </ul>
+                    <h4 id="scrollspyHeading3">Tips Desain</h4>
+                    <p>Untuk hasil terbaik pada Fancy Paper, pertimbangkan hal berikut:</p>
+                      <ul>
+                             <li>Desain dengan resolusi tinggi (minimal 300 DPI).</li>
+                             <li>Gunakan mode warna CMYK.</li>
+                             <li>Perhatikan area bleed (area lebih yang akan terpotong) jika desain Anda full color sampai pinggir.</li>
+                             <li>Beberapa jenis Fancy Paper mungkin mempengaruhi kecerahan warna, terutama warna-warna gelap.</li>
+                      </ul>
+                  </div>
+
+                </div>
+
+                </div>
+
+                <div class="col-md-6">
+                  <div class="product-form">
+                    <h3 class="text-center">Form Pemesanan</h3>
+                    <p class="text-muted mb-4">Sesuaikan pilihan cetakan anda</p>
+
+                    <form id="fancyPaperOrderForm" enctype="multipart/form-data">
+                      <input type="hidden" name="product" value="Cetak Fancy Paper">
+
+                      <div class="mb-3">
+                             <label for="paperType" class="form-label">Pilih Jenis Fancy Paper <span class="text-danger">*</span></label>
+                             <select class="form-select" id="paperType" name="paperType" required>
+                                 <option value="" disabled>-- Pilih Salah Satu --</option>
+                                 <option value="Linen">Linen</option>
+                                 <option value="Jasmine">Jasmine</option>
+                                 <option value="Concorde">Concorde</option>
+                                 <option value="Hammer">Hammer</option>
+                                 <option value="Other">Jenis Lain</option>
+                             </select>
+                           </div>
+
+                            <div class="mb-3">
+                               <label for="size" class="form-label">Ukuran <span class="text-danger">*</span></label>
+                               <select class="form-select" id="size" name="size" required>
+                                   <option value="" disabled>-- Pilih Ukuran atau Masukkan di Catatan --</option>
+                                   <option value="A4">A4 (210 x 297 mm)</option>
+                                   <option value="A5">A5 (148 x 210 mm)</option>
+                                   <option value="Custom">Ukuran Custom (Lihat Catatan)</option>
+                               </select>
+                             </div>
+
+                            <div class="mb-3">
+                                <label for="finishing" class="form-label">Finishing <span class="text-danger">*</span></label>
+                                <select class="form-select" id="finishing" name="finishing" required>
+                                    <option value="" disabled>-- Pilih Finishing (jika ada) --</option>
+                                    <option value="None">Tanpa Finishing</option>
+                                    <option value="Laminasi Doff">Laminasi Doff</option>
+                                    <option value="Laminasi Glossy">Laminasi Glossy</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                             <label for="quantity" class="form-label">Jumlah Pesanan (pcs/lembar) <span class="text-danger">*</span></label>
+                             <input type="number" class="form-control" id="quantity" name="quantity" min="1" required value="1">
+                           </div>
+
+                           <div class="mb-3">
+                             <label for="fileUpload" class="form-label">Unggah File Desain <span class="text-danger">*</span></label>
+                             <input class="form-control" type="file" id="fileUpload" name="designFile" accept=".pdf,.jpg,.jpeg,.png,.ai,.cdr" required>
+                             <small class="form-text text-muted">Format file yang didukung: PDF, JPG, PNG, AI, CDR. Ukuran maksimal file disesuaikan dengan konfigurasi server Anda.</small>
+                           </div>
+
+                           <div class="mb-3">
+                             <label for="notes" class="form-label">Catatan Tambahan (Ukuran custom, detail lainnya)</label>
+                             <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="Contoh: Ukuran custom 10x15 cm, harap dipotong sesuai pola"></textarea>
+                           </div>
+
+                           <hr class="my-4">
+                            <h5 class="mb-3">Info Kontak & Pengiriman</h5>
+
+                            <div class="mb-3">
+                               <label for="shippingMethod" class="form-label">Pilih Opsi Pengiriman <span class="text-danger">*</span></label>
+                               <select class="form-select" id="shippingMethod" name="shippingMethod" required>
+                                   <option value="" disabled>-- Pilih Opsi --</option>
+                                   <option value="pickup">Ambil Sendiri di Toko (Gratis)</option>
+                                   <option value="standard">Kurir Standar (Estimasi 2-3 Hari Kerja)</option>
+                                   <option value="express">Kurir Express (Estimasi 1-2 Hari Kerja)</option>
+                               </select>
+                             </div>
+
+                            <div class="mb-3">
+                              <label for="customerName" class="form-label">Nama Lengkap <span class="text-danger">*</span></label>
+                              <input type="text" class="form-control" id="customerName" name="customerName" required>
+                            </div>
+                            <div class="mb-3">
+                              <label for="customerPhone" class="form-label">Nomor Telepon/WhatsApp <span class="text-danger">*</span></label>
+                              <input type="tel" class="form-control" id="customerPhone" name="customerPhone" required>
+                              <small class="form-text text-muted">Kami akan menghubungi Anda melalui nomor ini.</small>
+                            </div>
+                             <div class="mb-3">
+                              <label for="customerEmail" class="form-label">Email <span class="text-danger">*</span></label>
+                              <input type="email" class="form-control" id="customerEmail" name="customerEmail" required>
+                            </div>
+                             <div class="mb-3">
+                              <label for="customerAddress" class="form-label">Alamat Pengiriman</label>
+                              <textarea class="form-control" id="customerAddress" name="customerAddress" rows="3" required></textarea>
+                              <small class="form-text text-muted">Isi jika pesanan perlu dikirim.</small>
+                            </div>
+                             <div class="input-group "> <input type="text" class="form-control" placeholder="Promo code" id="promoCodeInput">
+                            <button type="submit" class="btn btn-secondary" id="redeemPromoButton">Redeem</button> 
+                            </div>
+                            
+
+                               <div class="checkout-summary mt-4">
+                               <h4 class="mb-3 text-center">Ringkasan Pesanan</h4>
+                               <div class="price-summary">
+                                    <ul class="price-breakdown">
+                                        <li>
+                                            <span>Subtotal Item:</span>
+                                            <span id="itemSubtotal">Rp 0</span>
+                                        </li>
+                                          <li>
+                                            <span>Promo:</span>
+                                            <span id="promoDiscountDisplay">Rp 0</span>
+                                        </li>
+                                        <li>
+                                            <span>Estimasi Sampai:</span>
+                                            <span id="estimatedTime">Pilih opsi pengiriman</span>
+                                        </li>
+                                        <li>
+                                            <span>Pengiriman:</span>
+                                            <span id="shippingCost">Rp 0</span>
+                                        </li>
+                                        <li>
+                                            <span>Pajak:</span>
+                                            <span id="taxAmount">Rp 0</span>
+                                        </li>
+                                        <li class="cart-total">
+                                            <span>Total Estimasi:</span>
+                                            <span id="finalTotal" class="text-success">Rp 0</span>
+                                        </li>
+                                    </ul>
+                                    <small class="text-muted d-block mt-2">*Harga estimasi, konfirmasi final akan diberikan setelah file diperiksa dan spesifikasi lengkap.</small>
+                               </div>
+
+                               <!-- Tombol Lanjutkan Pembayaran -->
+                               <div class="d-grid gap-2 mt-4">
+                                 <button type="button" class="btn btn-primary btn-lg" id="continueToPaymentButton">Lanjutkan Pembayaran</button> <!-- Diubah type="button" dan diberi ID -->
+                                 <a href="index.html#services" class="btn btn-secondary btn-lg">Kembali ke Layanan</a>
+                            </div>
+                    </form>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+        <section class="footer bg-primary">
+          <div class="container">
+            <div class="footer-box" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="300">
+              <div class="row justify-content-between row-gap-4">
+                <div class="col col-md-4 col-12 text-white">
+                  <div class="d-flex align-items-center gap-2">
+                    <img
+                    src="./assets/2.png"
+                    alt="Logo"
+                    width="30"
+                    height="30"
+                    class="d-inline-block align-text-top"
+                  />
+                  <span class="fs-4 fw-bold">RNR Digital Printing</span>
+                  </div>
+                  <p class="lh-lg m-0">Butuh cetak cepat dan hasil keren? Serahkan pada RNR Digital Printing - partner cetak andalan kamu!</p>
+                </div>
+                <div class="col col-md-2 col-12 d-flex flex-column text-white gap-2">
+                  <h4 class="fw-bold">Menu</h4>
+                  <a href="#home" class="nav-bot text-white text-decoration-none">Home</a>
+                  <a href="#about" class="nav-bot text-white text-decoration-none">About</a>
+                  <a href="#order-guide" class="nav-bot text-white text-decoration-none">Order Guide</a>
+                  <a href="#services" class="nav-bot text-white text-decoration-none">Services</a>
+                  <a href="#faq" class="nav-bot text-white text-decoration-none">FAQ</a>
+                </div>
+                <div class="col col-md-4 col-12 d-flex flex-column text-white gap-2 lh-lg">
+                  <h4 class="fw-bold">Contact Us</h4>
+                  <address>
+                    <p class="m-0 d-flex align-items-center gap-2">Email: <a href="mailto:digitalprinting@rnr.tugas1.id" class="text-white">digitalprinting@rnr.tugas1.id</a></p>  
+                    <p class="m-0 d-flex align-items-center gap-2">Phone: <a href="tel:+6285156963404" class="text-white">0851-5696-3404</a></p>
+                    <p class="m-0 d-flex align-items-center gap-2">Address: Kompleks PT. Semen Indonesia (Persero) Tbk, Jl. Veteran, Kb. Dalem, Sidomoro, Kebomas, Gresik Regency, East Java 61122</p>
+                  </address>
+                </div>
+              </div>
+            </div>
+
+            <div class="copyright text-white text-center mt-5">
+              <p>&copy; Copyright by <span class="fw-bold">RNR Enterprise</span> 2025, All Rights Reserved.</p>
+              <p>Made With <span>&#10084;</span></p>
+            </div>
+
+          </div>
+        </section>
+       <!-- Footer -->
+
+    <!-- Animate Scroll JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <!-- Animate Scroll JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+      
+          const itemSubtotalDisplay = document.getElementById('itemSubtotal');
+          const shippingCostDisplay = document.getElementById('shippingCost');
+          const promoDiscountDisplay = document.getElementById('promoDiscountDisplay');
+          const taxAmountDisplay = document.getElementById('taxAmount');
+          const finalTotalDisplay = document.getElementById('finalTotal');
+          const estimatedTimeDisplay = document.getElementById('estimatedTime');
+
+       
+          const quantityInput = document.getElementById('quantity');
+          const paperTypeSelect = document.getElementById('paperType');
+          const finishingSelect = document.getElementById('finishing');
+          const sizeSelect = document.getElementById('size');
+          const shippingMethodSelect = document.getElementById('shippingMethod');
+          const customerNameInput = document.getElementById('customerName');
+          const customerPhoneInput = document.getElementById('customerPhone');
+          const customerEmailInput = document.getElementById('customerEmail');
+          const customerAddressInput = document.getElementById('customerAddress');
+          const notesInput = document.getElementById('notes');
+          const continueButton = document.getElementById('continueToPaymentButton');
+          const orderForm = document.getElementById('fancyPaperOrderForm');
+
+          
+          const promoCodeInput = document.getElementById('promoCodeInput');
+          const redeemPromoButton = document.getElementById('redeemPromoButton');
+
+          const TAX_RATE_PLACEHOLDER = 0.10;
+
+          const shippingOptions = {
+              '': { cost: 0, estimatedTime: 'Pilih opsi pengiriman' },
+              'pickup': { cost: 0, estimatedTime: 'Siap diambil hari ini/besok (konfirmasi)' },
+              'standard': { cost: 5000, estimatedTime: '2-3 Hari Kerja' },
+              'express': { cost: 10000, estimatedTime: '1-2 Hari Kerja' }
+          };
+
+          
+          const promoCodes = {
+              "HEMAT10": { type: "percentage", value: 0.10, description: "Diskon 10%" },    
+              "DISKON5K": { type: "fixed", value: 5000, description: "Potongan Rp 5.000" }, 
+              "RNRMANTAP": { type: "percentage", value: 0.05, description: "Diskon 5%"} 
+          };
+          let appliedPromo = null; 
+
+          
+          function getItemPrice(itemType, finishing, size) {
+              let basePrice = 0;
+
+              
+              if (itemType === 'Linen') basePrice = 3000;
+              else if (itemType === 'Jasmine') basePrice = 2500;
+              else if (itemType === 'Concorde') basePrice = 2000;
+              else if (itemType === 'Hammer') basePrice = 2200;
+              else if (itemType === 'Other') basePrice = 1800; 
+              else return 0; 
+
+            
+              if (size === 'A5') {
+                  basePrice *= 0.6; 
+              } else if (size === 'A4') {
+                  basePrice *= 1.0; 
+              } else if (size === 'Custom') {
+                  basePrice *= 1.0; 
+              } else {
+                  
+                  basePrice *= 1.0;
+              }
+
+             
+              let finishingCost = 0;
+              if (finishing === 'Laminasi Doff' || finishing === 'Laminasi Glossy') {
+                  finishingCost = 700;
+              }
+              
+
+              let calculatedItemPrice = basePrice + finishingCost;
+
+              
+              const minConfiguredItemPrice = 1000; 
+              if (calculatedItemPrice > 0 && calculatedItemPrice < minConfiguredItemPrice) {
+                  calculatedItemPrice = minConfiguredItemPrice;
+              }
+              
+              return calculatedItemPrice;
+          }
+
+          function formatRupiah(number) {
+              const num = parseFloat(number) || 0;
+              return new Intl.NumberFormat('id-ID', {
+                  style: 'currency',
+                  currency: 'IDR',
+                  minimumFractionDigits: 0
+              }).format(num);
+          }
+
+          function updateEstimatedPrice() {
+              const quantity = parseInt(quantityInput.value) || 0;
+              const paperType = paperTypeSelect.value;
+              const finishing = finishingSelect.value;
+              const size = sizeSelect.value;
+              const selectedShippingMethod = shippingMethodSelect.value;
+
+              let itemPricePerUnit = 0;
+              if (paperType && size) { 
+                  itemPricePerUnit = getItemPrice(paperType, finishing, size);
+              }
+              
+              let itemSubtotal = 0;
+              if (quantity > 0 && itemPricePerUnit > 0) {
+                  itemSubtotal = quantity * itemPricePerUnit;
+              } else {
+                  itemSubtotal = 0; 
+              }
+
+             
+              let promoDiscountValue = 0;
+              if (appliedPromo && itemSubtotal > 0) {
+                  if (appliedPromo.type === "percentage") {
+                      promoDiscountValue = itemSubtotal * appliedPromo.value;
+                  } else if (appliedPromo.type === "fixed") {
+                      promoDiscountValue = appliedPromo.value;
+                  }
+                  
+                  if (promoDiscountValue > itemSubtotal) {
+                      promoDiscountValue = itemSubtotal;
+                  }
+              }
+
+              const subtotalAfterPromo = itemSubtotal - promoDiscountValue;
+
+              
+              const shippingInfo = shippingOptions[selectedShippingMethod] || shippingOptions[''];
+              let calculatedShipping = 0;
+              let estimatedTime = shippingInfo.estimatedTime;
+
+              if (itemSubtotal > 0) { 
+                  calculatedShipping = shippingInfo.cost;
+              } else {
+                  estimatedTime = 'Pilih opsi pengiriman'; 
+              }
+              
+              
+              let calculatedTax = 0;
+              if (subtotalAfterPromo > 0) {
+                  calculatedTax = subtotalAfterPromo * TAX_RATE_PLACEHOLDER;
+              }
+
+
+              let finalTotal = 0;
+              if (itemSubtotal > 0) { 
+                  finalTotal = subtotalAfterPromo + calculatedShipping + calculatedTax;
+              } else { 
+                  calculatedShipping = 0;
+                  promoDiscountValue = 0;
+                  calculatedTax = 0;
+                  finalTotal = 0;
+              }
+
+
+              
+              itemSubtotalDisplay.textContent = formatRupiah(itemSubtotal);
+              promoDiscountDisplay.textContent = formatRupiah(-promoDiscountValue);
+              shippingCostDisplay.textContent = formatRupiah(calculatedShipping);
+              taxAmountDisplay.textContent = formatRupiah(calculatedTax);
+              finalTotalDisplay.textContent = formatRupiah(finalTotal);
+              estimatedTimeDisplay.textContent = estimatedTime;
+          }
+
+          
+          redeemPromoButton.addEventListener('click', function() {
+              const code = promoCodeInput.value.trim().toUpperCase();
+              if (promoCodes[code]) {
+                  appliedPromo = promoCodes[code];
+                  alert(`Promo "${appliedPromo.description}" berhasil diterapkan!`);
+                  
+              } else {
+                  appliedPromo = null; 
+                  alert("Kode promo tidak valid.");
+              }
+              updateEstimatedPrice(); 
+          });
+
+          
+          quantityInput.addEventListener('input', updateEstimatedPrice);
+          paperTypeSelect.addEventListener('change', updateEstimatedPrice);
+          finishingSelect.addEventListener('change', updateEstimatedPrice);
+          sizeSelect.addEventListener('change', updateEstimatedPrice);
+          shippingMethodSelect.addEventListener('change', updateEstimatedPrice);
+          promoCodeInput.addEventListener('input', function() { 
+           
+          });
+
+
+          continueButton.addEventListener('click', function(event) {
+              if (!orderForm.checkValidity()) {
+                  orderForm.reportValidity();
+                  return;
+              }
+              updateEstimatedPrice();
+
+              const quantity = parseInt(quantityInput.value) || 0;
+              const itemPricePerUnit = getItemPrice(paperTypeSelect.value, finishingSelect.value, sizeSelect.value);
+              const itemSubtotal = quantity * itemPricePerUnit;
+
+              let promoDiscountValue = 0;
+              let promoDescription = "Tidak ada";
+              if (appliedPromo && itemSubtotal > 0) {
+                  if (appliedPromo.type === "percentage") {
+                      promoDiscountValue = itemSubtotal * appliedPromo.value;
+                  } else if (appliedPromo.type === "fixed") {
+                      promoDiscountValue = appliedPromo.value;
+                  }
+                  if (promoDiscountValue > itemSubtotal) promoDiscountValue = itemSubtotal;
+                  promoDescription = appliedPromo.description + ` (${promoCodeInput.value.trim().toUpperCase()})`;
+              }
+              const subtotalAfterPromo = itemSubtotal - promoDiscountValue;
+
+              const selectedShippingMethod = shippingMethodSelect.value;
+              const shippingInfo = shippingOptions[selectedShippingMethod] || shippingOptions[''];
+              const calculatedShipping = itemSubtotal > 0 ? shippingInfo.cost : 0;
+              const calculatedTax = itemSubtotal > 0 ? subtotalAfterPromo * TAX_RATE_PLACEHOLDER : 0;
+              const finalTotal = itemSubtotal > 0 ? subtotalAfterPromo + calculatedShipping + calculatedTax : 0;
+              const estimatedTime = shippingInfo.estimatedTime;
+
+              const orderData = {
+                  productName: "Cetak Fancy Paper",
+                  quantity: quantity,
+                  specificOptions: {
+                      JenisKertas: paperTypeSelect.value !== "" ? paperTypeSelect.value : null,
+                      Ukuran: sizeSelect.value !== "" ? sizeSelect.value : null,
+                      Finishing: finishingSelect.value !== "" ? finishingSelect.value : null,
+                  },
+                  customerName: customerNameInput.value,
+                  customerPhone: customerPhoneInput.value,
+                  customerEmail: customerEmailInput.value,
+                  customerAddress: customerAddressInput.value,
+                  shippingMethod: selectedShippingMethod,
+                  shippingMethodDisplay: shippingInfo.estimatedTime !== 'Pilih opsi pengiriman' ? shippingOptions[selectedShippingMethod]?.estimatedTime + ' (' + selectedShippingMethod.charAt(0).toUpperCase() + selectedShippingMethod.slice(1) + ')' : 'Belum dipilih',
+                  notes: notesInput.value,
+                  
+                  itemSubtotal: itemSubtotal,
+                  promoApplied: promoDescription,
+                  promoDiscountAmount: promoDiscountValue,
+                  subtotalAfterPromo: subtotalAfterPromo,
+                  shippingCost: calculatedShipping,
+                  taxAmount: calculatedTax,
+                  finalTotal: finalTotal,
+                  estimatedTime: estimatedTime
+              };
+              localStorage.setItem('currentOrderData', JSON.stringify(orderData));
+              window.location.href = 'payment.html';
+          });
+
+          updateEstimatedPrice();
+      });
+    </script>
+</body>
+</html>

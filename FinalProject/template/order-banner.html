@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--FavIcon-->
+    <link
+      rel="shortcut icon"
+      href="./assets/2.png"
+      type="image/x-icon"
+    />
+    <!--FavIcon-->
+
+    <title>Checkout Cetak Spanduk & Banner - RNR Digital Printing</title>
+
+    <!--CSS-->
+    <link rel="stylesheet" href="./css/style.css" />
+    <!--CSS-->
+
+    <!-- Font -->
+     <link rel="stylesheet" href="">
+    <!-- Font -->
+
+    <!-- Animate Css -->
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Animate Css -->
+
+    <!-- Animate Scroll CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Animate Scroll CSS -->
+
+    <!--Bootstraps CSS-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+    <!--Bootstraps CSS-->
+
+    <style>
+        
+        .detail-product{
+            text-align: justify;
+        }
+
+        .product-form{
+          padding: 20px;
+          border: 1px solid #ccc;
+          border-radius: 5behavedpx;
+          background-color: #f9f9f9;
+        }
+
+        .checkout-summary{
+          background-color: #e9ecef;
+          padding: 20px;
+          border: 1px solid #ced4da;
+          border-radius: 5px;
+        }
+
+        .price-breakdown{
+          list-style-type: none;
+          padding-left: 0;
+          margin-bottom: 0.75rem;
+        }
+
+         .price-breakdown li {
+             display: flex;
+             justify-content: space-between;
+             align-items: flex-start;
+             margin-bottom: 5px;
+             padding-bottom: 5px;
+             border-bottom: 1px dotted #a7c2a7;
+             font-size: 0.9rem;
+         }
+
+         .price-breakdown li span{
+          word-break: break-word;
+         }
+
+         .price-breakdown li span:first-child{
+          margin-right: 15px;
+         }
+
+         .price-breakdown li span:last-child{
+          text-align: right;
+          font-weight: 500;
+         }
+
+         .price-breakdown li:last-child {
+             border-bottom: none;
+             margin-top: 10px;
+             padding-top: 10px;
+             font-size: 1.05rem;
+             font-weight: bold;
+             border-top: 1px solid #a7c2a7;
+         }
+          .price-breakdown li span:first-child {
+              font-weight: normal;
+          }
+          .price-breakdown li:last-child span {
+               font-weight: bold;
+          }
+
+           .price-summary > small.text-muted {
+            text-align: center;
+            display: block;
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+       
+        @media (max-width: 575.98px) {
+            #navbar-detail-product .nav-pills.flex-column .nav-item {
+              width: 100%;
+              margin-bottom: 0.35rem;
+            }
+            #navbar-detail-product .nav-pills.flex-column .nav-item:last-child {
+              margin-bottom: 0;
+            }
+            #navbar-detail-product .nav-pills.flex-column .nav-link {
+              text-align: center;
+              padding-top: 0.5rem;
+              padding-bottom: 0.5rem;
+              padding-left: 100px;
+              padding-right: 100px;
+              font-size: 0.9rem;
+            }
+          }
+
+          @media (min-width: 576px) and (max-width: 767.98px) {
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-item {
+              width: 100%;
+              margin-bottom: 0.35rem;
+            }
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-item:last-child {
+              margin-bottom: 0;
+            }
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-link {
+              text-align: center;
+              padding-top: 0.4rem;
+              padding-bottom: 0.4rem;
+              font-size: 0.875rem;
+            }
+          }
+
+
+          @media (min-width: 768px) and (max-width: 991.98px) {
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-item {
+              width: auto;
+              margin-bottom: 0;
+            }
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-item:not(:last-child) {
+              margin-right: 0.25rem;
+            }
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-link {
+              padding-left: 0.6rem;
+              padding-right: 0.6rem;
+              padding-top: 0.4rem;
+              padding-bottom: 0.4rem;
+              font-size: 0.8rem;
+              white-space: nowrap;
+              text-align: center;
+            }
+          }
+
+
+          @media (min-width: 992px) {
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-item {
+              width: auto;
+              margin-bottom: 0;
+            }
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-item:not(:last-child) {
+              margin-right: 0.5rem;
+            }
+            #navbar-detail-product .nav-pills.flex-sm-row .nav-link {
+              padding-left: 1rem;
+              padding-right: 1rem;
+              padding-top: 0.5rem;
+              padding-bottom: 0.5rem;
+              font-size: 0.9rem;
+              white-space: normal;
+              text-align: center;
+            }
+          }
+
+    </style>
+
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary py-3 animate__animated animate__fadeInDown">
+      <div class="container">
+        <a class="navbar-brand animate__animated animate__fadeInLeft animate__delay-1s" href="index.html">
+          <img
+            src="./assets/2.png"
+            alt="Logo"
+            width="30"
+            height="24"
+            class="d-inline-block align-text-top"
+          />
+          <span class="fs-3 fw-bold text-white">RNR Digital Printing</span>
+        </a>
+        <button
+          class="navbar-toggler bg-white shadow-none"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto d-flex gap-2 text-center pt-lg-0 pt-4">
+            <li class="nav-item">
+              <a class="nav-link fw-bold text-white" href="index.html#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold text-white" href="index.html#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold text-white" href="index.html#order-guide">How To Order</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold text-white" href="index.html#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold text-white" href="index.html#faq">FAQ</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar -->
+
+    <section class="order-page-section">
+        <div class="container">
+            <h1 class="display-5 fw-bold text-center mb-5">Halaman Pemesanan Spanduk & Banner</h1> 
+            <div class="row g-4">
+                <div class="col-md-6">
+
+                    <!-- Carousel -->
+                    <div id="bannerOrderCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#bannerOrderCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#bannerOrderCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#bannerOrderCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#bannerOrderCarousel" data-bs-slide-to="3" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#bannerOrderCarousel" data-bs-slide-to="4" aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                            <img src="./assets/Flexi-China.jpg" class="d-block w-100" alt="Flexi-China Banner Image">
+                            </div>
+                            <div class="carousel-item">
+                            <img src="./assets/Flexi-Korea.jpg" class="d-block w-100" alt="Flexi-Korea Banner Image">
+                            </div>
+                            <div class="carousel-item">
+                            <img src="./assets/Albatros.jpg" class="d-block w-100" alt="Albatros Banner Image">
+                            </div>
+                            <div class="carousel-item">
+                            <img src="./assets/Luster.jpg" class="d-block w-100" alt="Luster Banner Image">
+                            </div>
+                            <div class="carousel-item">
+                            <img src="./assets/Backlit.jpg" class="d-block w-100" alt="Backlit Banner Image">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#bannerOrderCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#bannerOrderCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <!-- Carousel -->
+
+                    <!-- Product Details Section with Scrollspy Nav -->
+                    <div class="detail-product mt-5 text-justify">
+                      <nav id="navbar-detail-product" class="navbar navbar-light bg-light px-3">
+                        <a class="navbar-brand" href="#"></a>
+                        <ul class="nav nav-pills flex-column flex-sm-row flex-wrap mx-auto mb">
+                          <li class="nav-item">
+                            <a class="nav-link" href="#scrollspyHeading1">Detail Product</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#scrollspyHeading2">Pilihan Bahan</a> 
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#scrollspyHeading3">Tipe Desain</a> 
+                          </li>
+                           <li class="nav-item">
+                             <a class="nav-link" href="#scrollspyHeading4">Pilihan Finishing</a> 
+                           </li>
+                        </ul>
+                      </nav>
+
+                  <div data-bs-spy="scroll" data-bs-target="#navbar-detail-product" data-bs-offset="0" class="scrollspy-example mt-5" tabindex="0">
+                    <h4 id="scrollspyHeading1">Detail Produk Cetak Spanduk & Banner</h4> 
+                      <p class="lh-lg">
+                         Spanduk dan banner adalah media promosi visual yang efektif untuk berbagai keperluan, baik indoor maupun outdoor. RNR Digital Printing menyediakan layanan cetak spanduk dan banner berkualitas dengan berbagai pilihan bahan dan finishing.
+                      </p>
+                      <p class="lh-lg">
+                        Sangat cocok digunakan untuk:
+                      </p>
+                      <ul class="mb-5">
+                        <li>Promosi Usaha (Warung, Toko, Event)</li>
+                        <li>Acara Khusus (Ulang Tahun, Pernikahan, Rapat)</li>
+                        <li>Informasi Publik (Pengumuman, Petunjuk Arah)</li>
+                        <li>Dekorasi Ruangan (Background Panggung, Pameran)</li>
+                        <li>Branding (Toko, Kantor, Stand Pameran)</li>
+                      </ul>
+                    <h4 id="scrollspyHeading2">Pilihan Bahan</h4> 
+                     <p class="lh-lg">
+                        Kami menyediakan berbagai pilihan bahan cetak spanduk dan banner untuk disesuaikan dengan kebutuhan dan budget Anda. Setiap bahan memiliki karakteristik dan daya tahan yang berbeda.
+                     </p>
+                      <ul class="mb-5">
+                          <li><b>Flexi China:</b> Bahan standar yang ekonomis, tersedia dalam berbagai ketebalan (280gr, 340gr). Cocok untuk spanduk promosi umum, event jangka pendek. Bisa digunakan indoor atau outdoor.</li> 
+                          <li><b>Flexi Korea:</b> Bahan lebih tebal dan kuat (440gr), kualitas cetak lebih halus. Sangat direkomendasikan untuk penggunaan outdoor jangka panjang atau untuk tampilan yang lebih premium.</li> 
+                          <li><b>Albatros & Luster:</b> Bahan indoor dengan permukaan lebih halus dari flexi, cocok untuk X-banner, Roll-up banner, atau poster indoor berkualitas tinggi. Albatros memiliki permukaan semi-glossy, Luster doff bertekstur.</li> 
+                          <li><b>Backlit:</b> Bahan khusus untuk cetak yang dipasang di media dengan pencahayaan dari belakang (seperti neon box).</li> 
+              
+                      </ul>
+                      <h4 id="scrollspyHeading4">Pilihan Finishing</h4> 
+                       <p class="lh-lg">
+                         Pilih jenis finishing yang sesuai dengan cara pemasangan spanduk atau banner Anda. Finishing memberikan kekuatan tambahan pada pinggiran banner dan memudahkan proses instalasi.
+                       </p>
+                        <ul class="mb-5">
+                            <li><b>Mata Ayam (Eyelet):</b> Lubang berbentuk cincin logam untuk menggantungkan spanduk/banner. Bisa dipasang di setiap sudut atau keliling.</li> 
+                            <li><b>Selongsong (Pocket):</b> Lipatan pada pinggir banner yang dilas/dilem, biasanya untuk memasukkan bambu atau pipa sebagai penyangga. Umumnya dibuat di sisi kiri-kanan atau atas-bawah.</li> 
+                            <li><b>Lem Keliling:</b> Pinggiran banner dilipat dan dilem untuk kekuatan tambahan tanpa mata ayam.</li> 
+                            <li><b>Potong Press:</b> Banner dipotong rapi sesuai ukuran tanpa lipatan atau mata ayam.</li> 
+                         
+                        </ul>
+                    <h4 id="scrollspyHeading3">Tips Desain</h4> 
+                    <p>Untuk hasil cetak spanduk/banner terbaik:</p>
+                      <ul>
+                             <li>Desain dalam skala yang tepat dan resolusi memadai (contoh: untuk ukuran besar, desain dalam skala 1:10 dengan resolusi tinggi, atau skala 1:1 dengan resolusi minimal 72 DPI).</li>
+                             <li>Gunakan mode warna CMYK.</li>
+                             <li>Perhatikan area aman (safe zone) agar teks/gambar penting tidak terpotong atau tertutup finishing (mata ayam/selongsong). Beri jarak minimal 3-5 cm dari pinggir desain.</li>
+                             <li>Sertakan detail ukuran dan finishing yang jelas pada file atau catatan tambahan.</li>
+                         </ul>
+                  </div>
+
+                </div>
+
+                </div>
+
+                <div class="col-md-6">
+                  <div class="product-form">
+                    <h3 class="text-center">Form Pemesanan</h3>
+                    <p class="text-muted mb-4">Sesuaikan pilihan cetakan anda</p>
+
+                    <form id="bannerOrderForm" enctype="multipart/form-data"> 
+                      <input type="hidden" name="product" value="Cetak Spanduk & Banner"> 
+
+                      <div class="mb-3">
+                             <label for="bannerMaterial" class="form-label">Jenis Bahan <span class="text-danger">*</span></label> 
+                             <select class="form-select" id="bannerMaterial" name="bannerMaterial" required> 
+                                 <option value="" disabled selected>-- Pilih Jenis Bahan --</option>
+                                 <option value="Flexi China 280gr">Flexi China 280gr (Standar, Indoor/Outdoor)</option>
+                                 <option value="Flexi China 340gr">Flexi China 340gr (Lebih Tebal)</option>
+                                 <option value="Flexi Korea 440gr">Flexi Korea 440gr (Berkualitas Tinggi, Outdoor)</option>
+                                 <option value="Albatros">Albatros (Halus, Indoor)</option>
+                                 <option value="Luster">Luster (Tekstur Doff, Indoor)</option>
+                                 <option value="Backlit">Backlit (Untuk Neon Box)</option>
+                             </select>
+                           </div>
+
+                           <div class="mb-3">
+                               <label for="bannerSize" class="form-label">Ukuran (Lebar x Tinggi dalam cm/meter) <span class="text-danger">*</span></label> 
+                               <input type="text" class="form-control" id="bannerSize" name="bannerSize" placeholder="Contoh: 200x100 cm atau 2x1 meter" required> 
+                               <small class="form-text text-muted">Masukkan ukuran format Panjang x Lebar (cm atau meter).</small>
+                             </div>
+
+                            <div class="mb-3">
+                                <label for="bannerFinishing" class="form-label">Finishing <span class="text-danger">*</span></label> 
+                                <select class="form-select" id="bannerFinishing" name="bannerFinishing" required> 
+                                    <option value="" disabled selected>-- Pilih Finishing --</option>
+                                    <option value="Mata Ayam (Setiap Sudut)">Mata Ayam (Setiap Sudut)</option>
+                                    <option value="Mata Ayam (Keliling)">Mata Ayam (Keliling)</option>
+                                    <option value="Selongsong Kanan-Kiri">Selongsong (Untuk Bambu/Pipa) Kanan-Kiri</option>
+                                    <option value="Selongsong Atas-Bawah">Selongsong (Untuk Bambu/Pipa) Atas-Bawah</option>
+                                    <option value="Lem Keliling">Lem Keliling (Tanpa Mata Ayam)</option>
+                                    <option value="Potong Press">Potong Press (Potong sesuai ukuran tanpa finishing pinggir)</option>
+                                </select>
+                              </div>
+
+                           <div class="mb-3">
+                             <label for="quantityBanner" class="form-label">Jumlah Pesanan (pcs) <span class="text-danger">*</span></label> 
+                             <input type="number" class="form-control" id="quantityBanner" name="quantity" min="1" required value="1"> 
+                           </div>
+
+                           <div class="mb-3">
+                             <label for="fileUploadBanner" class="form-label">Unggah File Desain <span class="text-danger">*</span></label> 
+                             <input class="form-control" type="file" id="fileUploadBanner" name="designFile" accept=".pdf,.jpg,.jpeg,.png,.ai,.cdr,.eps,.svg" required> 
+                             <small class="form-text text-muted">Format file yang didukung: PDF, JPG, PNG, AI, CDR, EPS, SVG. Pastikan desain sesuai ukuran yang dipesan atau berikan skala.</small>
+                           </div>
+
+                           <div class="mb-3">
+                             <label for="notesBanner" class="form-label">Catatan Tambahan (Detail finishing spesifik, penempatan mata ayam, dll.)</label> 
+                             <textarea class="form-control" id="notesBanner" name="notes" rows="4" placeholder="Contoh: Mata ayam setiap 50 cm keliling, warna pinggir banner putih"></textarea> 
+                           </div>
+
+                            <!-- Bidang Kontak & Pengiriman -->
+                            <hr class="my-4">
+                            <h5 class="mb-3">Info Kontak & Pengiriman</h5>
+
+                            <div class="mb-3">
+                               <label for="shippingMethod" class="form-label">Pilih Opsi Pengiriman <span class="text-danger">*</span></label>
+                               <select class="form-select" id="shippingMethod" name="shippingMethod" required>
+                                   <option value="" disabled selected>-- Pilih Opsi --</option>
+                                   <option value="pickup">Ambil Sendiri di Toko (Gratis)</option>
+                                   <option value="standard">Kurir Standar (Estimasi 2-3 Hari Kerja)</option>
+                                   <option value="express">Kurir Express (Estimasi 1-2 Hari Kerja)</option>
+                               </select>
+                             </div>
+
+                            <div class="mb-3">
+                              <label for="customerNameBanner" class="form-label">Nama Lengkap <span class="text-danger">*</span></label> 
+                              <input type="text" class="form-control" id="customerNameBanner" name="customerName" required> 
+                            </div>
+                            <div class="mb-3">
+                              <label for="customerPhoneBanner" class="form-label">Nomor Telepon/WhatsApp <span class="text-danger">*</span></label> 
+                              <input type="tel" class="form-control" id="customerPhoneBanner" name="customerPhone" required> 
+                              <small class="form-text text-muted">Kami akan menghubungi Anda melalui nomor ini.</small>
+                            </div>
+                             <div class="mb-3">
+                              <label for="customerEmailBanner" class="form-label">Email <span class="text-danger">*</span></label> 
+                              <input type="email" class="form-control" id="customerEmailBanner" name="customerEmail" required> 
+                            </div>
+                             <div class="mb-3">
+                              <label for="customerAddressBanner" class="form-label">Alamat Pengiriman</label> 
+                              <textarea class="form-control" id="customerAddressBanner" name="customerAddress" rows="3" required></textarea> 
+                              <small class="form-text text-muted">Isi jika pesanan perlu dikirim.</small>
+                            </div>
+
+                             <div class="mb-3"> <!-- Promo Code Input Group -->
+                                <label for="promoCodeInput" class="form-label">Kode Promo (opsional)</label>
+                                 <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Masukkan Kode Promo" id="promoCodeInput">
+                                    <button type="button" class="btn btn-secondary" id="redeemPromoButton">Redeem</button>
+                                 </div>
+                            </div>
+
+
+                           <!-- Checkout Summary Section -->
+                           <div class="checkout-summary mt-4">
+                               <h4 class="mb-3 text-center">Ringkasan Pesanan</h4>
+                               <div class="price-summary">
+                                    <ul class="price-breakdown">
+                                        <li>
+                                            <span>Subtotal Item:</span>
+                                            <span id="itemSubtotal">Rp 0</span>
+                                        </li>
+                                         <li> 
+                                            <span>Promo:</span>
+                                            <span id="promoDiscountDisplay">Rp 0</span>
+                                        </li>
+                                        <li>
+                                            <span>Estimasi Sampai:</span>
+                                            <span id="estimatedTime">Pilih opsi pengiriman</span>
+                                        </li>
+                                        <li>
+                                            <span>Pengiriman:</span>
+                                            <span id="shippingCost">Rp 0</span>
+                                        </li>
+                                         <li>
+                                            <span>Pajak:</span>
+                                            <span id="taxAmount">Rp 0</span>
+                                        </li>
+                                        <li class="cart-total">
+                                            <span>Total Estimasi:</span>
+                                            <span id="finalTotal" class="text-success">Rp 0</span>
+                                        </li>
+                                    </ul>
+                                    <small class="text-muted d-block mt-2">*Harga estimasi, konfirmasi final akan diberikan setelah file diperiksa dan spesifikasi lengkap.</small>
+                               </div>
+
+                        
+                               <div class="d-grid gap-2 mt-4">
+                                 <button type="button" class="btn btn-primary btn-lg" id="continueToPaymentButton">Lanjutkan Pembayaran</button> 
+                                 <a href="index.html#services" class="btn btn-secondary btn-lg">Kembali ke Layanan</a>
+                               </div>
+                           </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="footer bg-primary mt-5">
+        <div class="container">
+            <div class="footer-box">
+                <div class="row justify-content-between row-gap-4">
+                    <div class="col col-md-4 col-12 text-white">
+                        <div class="d-flex align-items-center gap-2">
+                            <img src="./assets/2.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top"/>
+                            <span class="fs-4 fw-bold">RNR Digital Printing</span>
+                        </div>
+                        <p class="lh-lg m-0">Butuh cetak cepat dan hasil keren? Serahkan pada RNR Digital Printing - partner cetak andalan kamu!</p>
+                    </div>
+                    <div class="col col-md-2 col-12 d-flex flex-column text-white gap-2">
+                        <h4 class="fw-bold">Menu</h4>
+                        <a href="index.html#home" class="nav-bot text-white text-decoration-none">Home</a>
+                        <a href="index.html#about" class="nav-bot text-white text-decoration-none">About</a>
+                        <a href="index.html#order-guide" class="nav-bot text-white text-decoration-none">How To Order</a>
+                        <a href="index.html#services" class="nav-bot text-white text-decoration-none">Services</a>
+                        <a href="index.html#faq" class="nav-bot text-white text-decoration-none">FAQ</a>
+                    </div>
+                    <div class="col col-md-4 col-12 d-flex flex-column text-white gap-2 lh-lg">
+                        <h4 class="fw-bold">Contact Us</h4>
+                        <address>
+                            <p class="m-0 d-flex align-items-center gap-2">Email: <a href="mailto:digitalprinting@rnr.tugas1.id" class="text-white">digitalprinting@rnr.tugas1.id</a></p>
+                            <p class="m-0 d-flex align-items-center gap-2">Phone: <a href="tel:+6285156963404" class="text-white">0851-5696-3404</a></p>
+                            <p class="m-0 d-flex align-items-center gap-2">Address: Kompleks PT. Semen Indonesia (Persero) Tbk, Jl. Veteran, Kb. Dalem, Sidomoro, Kebomas, Gresik Regency, East Java 61122</p>
+                        </address>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright text-white text-center mt-5">
+                <p>© Copyright by <span class="fw-bold">RNR Enterprise</span> 2025, All Rights Reserved.</p>
+                <p>Made With <span>❤</span></p>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+
+    <!-- Animate Scroll JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <!-- Animate Scroll JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script Perkiraan Harga dan Redirect ke Payment Page -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+           
+            const itemSubtotalDisplay = document.getElementById('itemSubtotal');
+            const shippingCostDisplay = document.getElementById('shippingCost');
+            const promoDiscountDisplay = document.getElementById('promoDiscountDisplay'); 
+            const taxAmountDisplay = document.getElementById('taxAmount');
+            const finalTotalDisplay = document.getElementById('finalTotal');
+            const estimatedTimeDisplay = document.getElementById('estimatedTime');
+
+           
+            const quantityInput = document.getElementById('quantityBanner'); 
+            const bannerMaterialSelect = document.getElementById('bannerMaterial'); 
+            const bannerSizeInput = document.getElementById('bannerSize'); 
+            const bannerFinishingSelect = document.getElementById('bannerFinishing'); 
+            const shippingMethodSelect = document.getElementById('shippingMethod');
+            const customerNameInput = document.getElementById('customerNameBanner'); 
+            const customerPhoneInput = document.getElementById('customerPhoneBanner'); 
+            const customerEmailInput = document.getElementById('customerEmailBanner'); 
+            const customerAddressInput = document.getElementById('customerAddressBanner'); 
+            const notesInput = document.getElementById('notesBanner'); 
+            const continueButton = document.getElementById('continueToPaymentButton');
+            const orderForm = document.getElementById('bannerOrderForm');
+
+            
+            const promoCodeInput = document.getElementById('promoCodeInput');
+            const redeemPromoButton = document.getElementById('redeemPromoButton');
+
+
+            
+            const TAX_RATE_PLACEHOLDER = 0.10; 
+
+      
+            const shippingOptions = {
+                 '': { cost: 0, estimatedTime: 'Pilih opsi pengiriman' }, 
+                 'pickup': { cost: 0, estimatedTime: 'Siap diambil hari ini/besok (konfirmasi)' },
+                 'standard': { cost: 15000, estimatedTime: '2-3 Hari Kerja' }, 
+                 'express': { cost: 30000, estimatedTime: '1-2 Hari Kerja' } 
+            };
+
+             
+             const promoCodes = {
+                 "HEMAT10": { type: "percentage", value: 0.10, description: "Diskon 10%" },
+                 "DISKON5K": { type: "fixed", value: 5000, description: "Potongan Rp 5.000" },
+                 "RNRMANTAP": { type: "percentage", value: 0.05, description: "Diskon 5%"}
+             };
+             let appliedPromo = null; 
+
+
+            
+             function getItemPrice(bannerMaterial, bannerSize, bannerFinishing) { 
+                
+                let pricePerSquareMeter = 0;
+                let finishingCostPerBanner = 0;
+                let areaSquareMeter = 0; 
+
+               
+                if (bannerMaterial === 'Flexi China 280gr') {
+                    pricePerSquareMeter = 25000;
+                } else if (bannerMaterial === 'Flexi China 340gr') {
+                    pricePerSquareMeter = 30000;
+                } else if (bannerMaterial === 'Flexi Korea 440gr') {
+                    pricePerSquareMeter = 45000;
+                } else if (bannerMaterial === 'Albatros' || bannerMaterial === 'Luster') {
+                     pricePerSquareMeter = 60000; 
+                } else if (bannerMaterial === 'Backlit') {
+                     pricePerSquareMeter = 80000;
+                } else {
+                     pricePerSquareMeter = 0;
+                }
+
+
+                
+                const size = bannerSize.trim();
+                const sizeParts = size.split('x');
+                if (sizeParts.length === 2) {
+                    const widthStr = sizeParts[0].trim();
+                    const heightStr = sizeParts[1].trim();
+
+                    let width = parseFloat(widthStr);
+                    let height = parseFloat(heightStr);
+
+                    if (!isNaN(width) && !isNaN(height) && width > 0 && height > 0) {
+        
+                        let widthInMeters = width;
+                        let heightInMeters = height;
+
+                        
+                        if (widthStr.toLowerCase().endsWith('cm') || (widthStr.indexOf('m') === -1 && parseFloat(widthStr) > 100)) {
+                             widthInMeters = width / 100;
+                        } else if (widthStr.toLowerCase().endsWith('m')) {
+                            widthInMeters = width; 
+                        } else if (widthStr.indexOf('m') === -1 && parseFloat(widthStr) <= 100 && parseFloat(widthStr) > 0) {
+                             widthInMeters = width;
+                        } else {
+                             widthInMeters = 0; 
+                        }
+
+
+                         if (heightStr.toLowerCase().endsWith('cm') || (heightStr.indexOf('m') === -1 && parseFloat(heightStr) > 100)) {
+                            heightInMeters = height / 100;
+                        } else if (heightStr.toLowerCase().endsWith('m')) {
+                            heightInMeters = height; 
+                        } else if (heightStr.indexOf('m') === -1 && parseFloat(heightStr) <= 100 && parseFloat(heightStr) > 0) {
+                            heightInMeters = height;
+                        } else {
+                            heightInMeters = 0; 
+                        }
+
+                        areaSquareMeter = widthInMeters * heightInMeters;
+
+                         const minimumArea = 0.1;
+                         if (areaSquareMeter > 0 && areaSquareMeter < minimumArea) {
+                             areaSquareMeter = minimumArea; 
+                         } else if (areaSquareMeter === 0 && (width > 0 || height > 0)) {
+                            areaSquareMeter = 0; 
+                         }
+
+
+                    } else {
+                        areaSquareMeter = 0; 
+                    }
+                } else {
+                     areaSquareMeter = 0;
+                }
+
+
+                if (bannerFinishing === 'Mata Ayam (Setiap Sudut)') {
+                    finishingCostPerBanner = 3000; 
+                } else if (bannerFinishing === 'Mata Ayam (Keliling)') {
+                    finishingCostPerBanner = 7000;
+                } else if (bannerFinishing === 'Selongsong Kanan-Kiri' || bannerFinishing === 'Selongsong Atas-Bawah') {
+                    finishingCostPerBanner = 10000; 
+                } else if (bannerFinishing === 'Lem Keliling') {
+                    finishingCostPerBanner = 5000;
+                } else if (bannerFinishing === 'Potong Press') {
+                    finishingCostPerBanner = 0;
+                } else {
+                     finishingCostPerBanner = 0; 
+                }
+
+
+                 if (areaSquareMeter > 0 && pricePerSquareMeter > 0) { 
+                     let pricePerSingleBanner = (areaSquareMeter * pricePerSquareMeter) + finishingCostPerBanner;
+                     const minimumPricePerBannerOverall = 15000; 
+                     if (pricePerSingleBanner > 0 && pricePerSingleBanner < minimumPricePerBannerOverall) {
+                         return minimumPricePerBannerOverall; 
+                     }
+                     return pricePerSingleBanner;
+                 }
+                 return 0; 
+
+
+             }
+
+           
+             function formatRupiah(number) {
+                const num = parseFloat(number) || 0;
+                return new Intl.NumberFormat('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                    minimumFractionDigits: 0 
+                }).format(num);
+             }
+
+
+           
+            function updateEstimatedPrice() {
+                const quantity = parseInt(quantityInput.value) || 0;
+                const bannerMaterial = bannerMaterialSelect.value;
+                const bannerSize = bannerSizeInput.value.trim();
+                const bannerFinishing = bannerFinishingSelect.value;
+                const selectedShippingMethod = shippingMethodSelect.value;
+
+                let itemSubtotal = 0;
+                 
+                 if (quantity > 0 && bannerMaterial !== '' && bannerMaterial !== null && !bannerMaterial.startsWith('-- Pilih') && bannerSize.trim() !== '') { 
+                     let pricePerSingleBanner = getItemPrice(bannerMaterial, bannerSize, bannerFinishing);
+                     itemSubtotal = quantity * pricePerSingleBanner;
+                 } else {
+                      itemSubtotal = 0;
+                 }
+
+
+               
+                let promoDiscountValue = 0;
+                if (appliedPromo && itemSubtotal > 0) { 
+                    if (appliedPromo.type === "percentage") {
+                        promoDiscountValue = itemSubtotal * appliedPromo.value;
+                    } else if (appliedPromo.type === "fixed") {
+                        promoDiscountValue = appliedPromo.value;
+                    }
+                  
+                    if (promoDiscountValue > itemSubtotal) {
+                        promoDiscountValue = itemSubtotal;
+                    }
+                }
+
+                const subtotalAfterPromo = itemSubtotal - promoDiscountValue;
+
+
+                
+                const shippingInfo = shippingOptions[selectedShippingMethod] || shippingOptions[''];
+                let calculatedShipping = 0;
+                let estimatedTime = shippingInfo.estimatedTime;
+
+                if (subtotalAfterPromo > 0) {
+                    calculatedShipping = shippingInfo.cost;
+                } else {
+                    calculatedShipping = 0;
+                     estimatedTime = 'Pilih opsi pengiriman'; 
+                }
+
+
+                let calculatedTax = 0;
+                 if (subtotalAfterPromo > 0) { 
+                     calculatedTax = subtotalAfterPromo * TAX_RATE_PLACEHOLDER;
+                 }
+
+
+                let finalTotal = 0;
+                 if (subtotalAfterPromo > 0) {
+                      finalTotal = subtotalAfterPromo + calculatedShipping + calculatedTax;
+                 } else {
+                     finalTotal = 0;
+                 }
+
+
+                // Update the display elements
+                itemSubtotalDisplay.textContent = formatRupiah(itemSubtotal);
+                promoDiscountDisplay.textContent = formatRupiah(-promoDiscountValue);
+                shippingCostDisplay.textContent = formatRupiah(calculatedShipping);
+                taxAmountDisplay.textContent = formatRupiah(calculatedTax);
+                finalTotalDisplay.textContent = formatRupiah(finalTotal);
+                estimatedTimeDisplay.textContent = estimatedTime;
+
+                const isFormValidForCalculation = quantity > 0 && bannerMaterial !== "" && bannerMaterial !== null && !bannerMaterial.startsWith('-- Pilih') && bannerSize.trim() !== "" && bannerFinishing !== "" && bannerFinishing !== null && !bannerFinishing.startsWith('-- Pilih') && selectedShippingMethod !== "" && selectedShippingMethod !== null && !selectedShippingMethod.startsWith('-- Pilih') && customerNameInput.value.trim() !== "" && customerPhoneInput.value.trim() !== "" && customerEmailInput.value.trim() !== "" && customerAddressInput.value.trim() !== "";
+                continueButton.disabled = !isFormValidForCalculation;
+
+            } 
+
+            redeemPromoButton.addEventListener('click', function() {
+                const code = promoCodeInput.value.trim().toUpperCase();
+                if (promoCodes[code]) {
+                    appliedPromo = promoCodes[code];
+                    alert(`Promo "${appliedPromo.description}" berhasil diterapkan!`); 
+                } else {
+                    appliedPromo = null; 
+                    alert("Kode promo tidak valid.");
+                }
+                updateEstimatedPrice();
+            });
+
+            quantityInput.addEventListener('input', updateEstimatedPrice); 
+            bannerMaterialSelect.addEventListener('change', updateEstimatedPrice);
+            bannerSizeInput.addEventListener('input', updateEstimatedPrice); 
+            bannerFinishingSelect.addEventListener('change', updateEstimatedPrice);
+            shippingMethodSelect.addEventListener('change', updateEstimatedPrice);
+             customerNameInput.addEventListener('input', updateEstimatedPrice);
+             customerPhoneInput.addEventListener('input', updateEstimatedPrice);
+             customerEmailInput.addEventListener('input', updateEstimatedPrice);
+             customerAddressInput.addEventListener('input', updateEstimatedPrice);
+
+
+             continueButton.addEventListener('click', function(event) {
+                 if (!orderForm.checkValidity()) {
+                     orderForm.reportValidity(); 
+                     return; 
+                 }
+
+                 updateEstimatedPrice();
+
+                 const quantity = parseInt(quantityInput.value) || 0;
+                 const bannerMaterial = bannerMaterialSelect.value;
+                 const bannerSize = bannerSizeInput.value.trim();
+                 const bannerFinishing = bannerFinishingSelect.value;
+
+                 let pricePerSingleItem = 0;
+                 if (quantity > 0 && bannerMaterial !== "" && bannerMaterial !== null && !bannerMaterial.startsWith('-- Pilih') && bannerSize.trim() !== "") {
+                     pricePerSingleItem = getItemPrice(bannerMaterial, bannerSize, bannerFinishing);
+                 }
+                 const itemSubtotal = quantity * pricePerSingleItem;
+
+
+                 let promoDiscountValue = 0;
+                 let promoDescription = "Tidak ada";
+                 if (appliedPromo && itemSubtotal > 0) {
+                     if (appliedPromo.type === "percentage") {
+                         promoDiscountValue = itemSubtotal * appliedPromo.value;
+                     } else if (appliedPromo.type === "fixed") {
+                         promoDiscountValue = appliedPromo.value;
+                     }
+                     if (promoDiscountValue > itemSubtotal) promoDiscountValue = itemSubtotal; 
+                     promoDescription = appliedPromo.description + ` (${promoCodeInput.value.trim().toUpperCase()})`;
+                 }
+                 const subtotalAfterPromo = itemSubtotal - promoDiscountValue;
+
+
+                 const selectedShippingMethod = shippingMethodSelect.value;
+                 const shippingInfo = shippingOptions[selectedShippingMethod] || shippingOptions[''];
+                 const calculatedShipping = subtotalAfterPromo > 0 ? shippingInfo.cost : 0; 
+                 const estimatedTime = shippingInfo.estimatedTime;
+
+                 const calculatedTax = subtotalAfterPromo > 0 ? subtotalAfterPromo * TAX_RATE_PLACEHOLDER : 0; 
+
+                 const finalTotal = subtotalAfterPromo > 0 ? subtotalAfterPromo + calculatedShipping + calculatedTax : 0; 
+
+
+                 const specificOptionsData = {};
+                 if (bannerMaterial !== "" && bannerMaterial !== null && !bannerMaterial.startsWith('-- Pilih')) specificOptionsData["JenisBahan"] = bannerMaterial;
+                 if (bannerSize.trim() !== "") specificOptionsData["Ukuran"] = bannerSize.trim(); 
+                 if (bannerFinishing !== "" && bannerFinishing !== null && !bannerFinishing.startsWith('-- Pilih')) specificOptionsData["Finishing"] = bannerFinishing;
+
+
+                 const orderData = {
+                     productName: "Cetak Spanduk & Banner",
+                     quantity: quantity,
+                     specificOptions: specificOptionsData, 
+                     customerName: customerNameInput.value,
+                     customerPhone: customerPhoneInput.value,
+                     customerEmail: customerEmailInput.value,
+                     customerAddress: customerAddressInput.value,
+                     shippingMethod: selectedShippingMethod, 
+                     shippingMethodDisplay: shippingInfo.estimatedTime !== 'Pilih opsi pengiriman' ? shippingOptions[selectedShippingMethod]?.estimatedTime + ' (' + selectedShippingMethod.charAt(0).toUpperCase() + selectedShippingMethod.slice(1) + ')' : 'Belum dipilih', // Display string
+                     notes: notesInput.value,
+
+                     // Detail Ringkasan Harga
+                     itemSubtotal: itemSubtotal,
+                     promoApplied: promoDescription, 
+                     promoDiscountAmount: promoDiscountValue, 
+                     subtotalAfterPromo: subtotalAfterPromo, 
+                     shippingCost: calculatedShipping,
+                     taxAmount: calculatedTax,
+                     finalTotal: finalTotal,
+                     estimatedTime: estimatedTime
+                 };
+
+                 localStorage.setItem('currentOrderData', JSON.stringify(orderData));
+
+                 window.location.href = 'payment.html';
+             });
+
+
+            updateEstimatedPrice();
+        });
+    </script>
+
+  </body>
+</html>

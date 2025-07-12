@@ -120,7 +120,7 @@ DB_PASSWORD=password_database
 php artisan migrate
 ```
 
-#### Jalankan seeder (opsional)
+#### Jalankan seeder
 ```bash
 php artisan db:seed
 ```
