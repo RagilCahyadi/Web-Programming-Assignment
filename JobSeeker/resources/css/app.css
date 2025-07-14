@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for the job seeker platform */
+@layer components {
+    .btn-primary {
+      @apply bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition duration-150 ease-in-out;
+    }
+
+    .btn-secondary {
+      @apply bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-md transition duration-150 ease-in-out;
+    }
+
+    .btn-success {
+      @apply bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition duration-150 ease-in-out;
+    }
+
+    .btn-danger {
+      @apply bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md transition duration-150 ease-in-out;
+    }
+
+    .form-input {
+      @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm;
+    }
+
+    .form-select {
+      @apply block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md;
+    }
+
+    .form-textarea {
+      @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm;
+    }
+
+    .card {
+      @apply bg-white overflow-hidden shadow rounded-lg;
+    }
+
+    .card-header {
+      @apply px-4 py-5 sm:px-6 border-b border-gray-200;
+    }
+
+    .card-body {
+      @apply px-4 py-5 sm:p-6;
+    }
+
+    .badge-pending {
+      @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800;
+    }
+
+    .badge-accepted {
+      @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800;
+    }
+
+    .badge-declined {
+      @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800;
+    }
+
+    .sidebar-link {
+      @apply text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md transition duration-150 ease-in-out;
+    }
+
+    .sidebar-link-active {
+      @apply bg-gray-100 text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md;
+    }
+
+    .admin-sidebar-link {
+      @apply text-white hover:bg-indigo-700 group flex items-center px-2 py-2 text-base font-medium rounded-md transition duration-150 ease-in-out;
+    }
+
+    .admin-sidebar-link-active {
+      @apply bg-indigo-900 text-white group flex items-center px-2 py-2 text-base font-medium rounded-md;
+    }
+
+    /* Login Page Styles */
+    .login-button {
+      @apply w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-lg text-white font-semibold transition duration-200 ease-in-out transform hover:scale-105 active:scale-95;
+      background-color: #004080 !important;
+    }
+
+    .login-button:hover {
+      background-color: #003366 !important;
+    }
+
+    .login-input {
+      @apply w-full px-4 py-3 border border-gray-300 rounded-lg transition duration-200 ease-in-out placeholder-gray-400;
+    }
+
+    .login-input:focus {
+      outline: none;
+      border-color: #004080 !important;
+      box-shadow: 0 0 0 2px rgba(0, 64, 128, 0.1) !important;
+    }
+
+    .admin-badge {
+      background-color: #004080 !important;
+      @apply text-white px-6 py-3 rounded-lg inline-block shadow-lg;
+    }
+
+    .login-link {
+      color: #004080 !important;
+      @apply font-medium transition duration-200 underline decoration-2 underline-offset-2;
+    }
+
+    .login-link:hover {
+      color: #003366 !important;
+    }
+  }
+
+  /* Loading spinner */
+  .spinner {
+    @apply inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin;
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  /* Print styles */
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+
+    .print-break {
+      page-break-before: always;
+    }
+  }

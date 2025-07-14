@@ -1,3 +1,4 @@
+{{-- rubah tampilan packaging-blade jadi seperti dibawah ini namun warna tetap bedakan dan fungsi sesuaikan dengan halaman packaging.blade jangan sampai terduplikasi pastikan icon sesuai dengan isi konten   --}}
 @extends('layouts.frontend')
 
 @section('title', 'Cetak Fancy Paper - RNR Digital Printing')
@@ -873,8 +874,7 @@
         z-index: 1;
     }
     
-    /* Process Steps */
-    .process-step {
+    /* Process Steps */    .process-step {
         text-align: center;
         padding: 30px 20px;
         background: linear-gradient(145deg, white, #f8f9fa);
@@ -883,9 +883,10 @@
         transition: all 0.3s ease;
         position: relative;
         border: 1px solid rgba(102, 126, 234, 0.1);
-        overflow: hidden;
+        overflow: visible; /* Allow numbers to show outside */
+        margin-top: 30px; /* Add space for numbers */
     }
-    
+
     .process-step::before {
         content: '';
         position: absolute;
@@ -895,26 +896,43 @@
         height: 4px;
         background: linear-gradient(45deg, #667eea, #764ba2);
     }
-    
+
     .process-step:hover {
         transform: translateY(-10px);
         box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     }
-    
+
     .process-number {
         position: absolute;
-        top: -15px;
-        right: 20px;
-        width: 30px;
-        height: 30px;
-        background: linear-gradient(45deg, #667eea, #764ba2);
-        color: white;
+        top: -25px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(45deg, #FF6B35, #F7931E) !important;
+        color: white !important;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: bold;
-        font-size: 0.9rem;
+        font-weight: 900 !important;
+        font-size: 1.6rem !important;
+        box-shadow: 0 8px 25px rgba(255, 107, 53, 0.7), inset 0 2px 4px rgba(255,255,255,0.3);
+        border: 4px solid white;
+        z-index: 25 !important;
+        text-shadow: 2px 2px 6px rgba(0,0,0,0.9) !important;
+        font-family: 'Arial Black', Arial, sans-serif !important;
+        animation: numberPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes numberPulse {
+        0%, 100% { 
+            transform: scale(1); 
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.7), inset 0 2px 4px rgba(255,255,255,0.3); 
+        }
+        50% { 
+            transform: scale(1.15); 
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.9), inset 0 2px 4px rgba(255,255,255,0.5); 
+        }
     }
     
     .process-icon {
@@ -1525,7 +1543,7 @@
                 <div class="product-specs mt-4 fade-in">
                     <div class="d-flex align-items-center mb-4">
                         <div class="spec-icon-wrapper me-3">
-                            <i class="bi bi-info-circle text-primary spec-icon"></i>
+                            <i class="bi bi-info-circle spec-icon"></i>
                         </div>
                         <div>
                             <h5 class="mb-1">Spesifikasi Produk</h5>
@@ -1921,10 +1939,10 @@
                         <span>Jumlah:</span>
                         <span id="quantityDisplay">0 lembar</span>
                     </div>
-                    <div class="d-flex justify-content-between mb-2">
+                    {{-- <div class="d-flex justify-content-between mb-2">
                         <span>Subtotal:</span>
                         <span id="subtotal">Rp 0</span>
-                    </div>
+                    </div> --}}
                     <div class="d-flex justify-content-between mb-2">
                         <span>Biaya Tambahan:</span>
                         <span id="additionalCost">Rp 0</span>
@@ -2085,7 +2103,7 @@
 </section>
 
 <!-- Process Steps -->
-<section class="py-5">
+<section class="py-5" style="padding-top: 4rem !important;">
     <div class="container">
         <div class="text-center mb-5 fade-in">
             <h3 class="fw-bold">Proses Pemesanan</h3>
@@ -3321,8 +3339,4 @@ function validateForm() {
 }
 
 </script>
-@endpush
-
-@push('scripts')
-<script src="{{ asset('js/services-animations.js') }}"></script>
 @endpush

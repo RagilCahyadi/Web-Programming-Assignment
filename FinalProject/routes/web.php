@@ -16,6 +16,9 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::prefix('services')->name('services.')->group(function () {
     Route::get('/fancy-paper', [ServiceController::class, 'fancyPaper'])->name('fancy-paper');
     Route::get('/packaging', [ServiceController::class, 'packaging'])->name('packaging');
+    Route::get('/packaging-test', function() {
+        return view('services.packaging-test');
+    })->name('packaging-test');
     Route::get('/banner', [ServiceController::class, 'banner'])->name('banner');
     Route::get('/uv-printing', [ServiceController::class, 'uvPrinting'])->name('uv-printing');
     Route::post('/calculate-price', [ServiceController::class, 'calculatePrice'])->name('calculate-price');

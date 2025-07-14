@@ -377,10 +377,355 @@ class ServiceController extends Controller
         // Validate the order data
         $orderData = $request->all();
         
+        // Calculate pricing based on product type or service type
+        if (isset($orderData['service_type']) && $orderData['service_type'] === 'uv-printing') {
+            $orderData = $this->calculateUvPrintingPricing($orderData);
+        } elseif (isset($orderData['product_type'])) {
+            if (in_array($orderData['product_type'], ['label_stiker', 'packaging_custom'])) {
+                $orderData = $this->calculatePackagingPricing($orderData);
+            } elseif (in_array($orderData['product_type'], ['banner', 'signage'])) {
+                $orderData = $this->calculateBannerPricing($orderData);
+            }
+        }
+        
         // Store in session
         $request->session()->put('order_data', $orderData);
         
+        // Return JSON response for AJAX or redirect for form submission
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Order data stored successfully',
+                'redirect_url' => route('checkout')
+            ]);
+        }
+        
         return redirect()->route('checkout');
+    }
+    
+    /**
+     * Calculate pricing for packaging/label orders
+     */
+    private function calculatePackagingPricing($orderData)
+    {
+        $basePrices = [
+            'label_stiker' => 1000,
+            'packaging_custom' => 5000
+        ];
+        
+        $basePrice = $basePrices[$orderData['product_type']] ?? 0;
+        $quantity = (int)($orderData['quantity'] ?? 1);
+        $additionalCost = 0;
+        $sizeMultiplier = 1;
+        
+        // Calculate material/type costs
+        if ($orderData['product_type'] === 'label_stiker') {
+            $materialPrices = [
+                'vinyl_doff' => 3000,
+                'vinyl_glossy' => 3500,
+                'bontak' => 2500,
+                'transparan' => 4000,
+                'hologram' => 8000
+            ];
+            
+            $cutPrices = [
+                'kotak' => 0,
+                'kiss_cut' => 1000,
+                'die_cut' => 5000
+            ];
+            
+            $sizeMultipliers = [
+                '5x5' => 1,
+                '7x7' => 1.5,
+                '10x10' => 2,
+                'custom' => 1
+            ];
+            
+            $additionalCost += $materialPrices[$orderData['material_type'] ?? 'vinyl_doff'] ?? 0;
+            $additionalCost += $cutPrices[$orderData['cut_type'] ?? 'kotak'] ?? 0;
+            $sizeMultiplier = $sizeMultipliers[$orderData['sticker_size'] ?? '5x5'] ?? 1;
+            
+        } elseif ($orderData['product_type'] === 'packaging_custom') {
+            $packagingPrices = [
+                'mug_sublim' => 25000,
+                'box_custom' => 15000,
+                'paper_bag' => 8000,
+                'standing_pouch' => 12000
+            ];
+            
+            $finishingPrices = [
+                'none' => 0,
+                'laminating' => 2000,
+                'emboss' => 5000,
+                'hot_print' => 7000
+            ];
+            
+            $sizeMultipliers = [
+                'small' => 1,
+                'medium' => 1.5,
+                'large' => 2,
+                'xl' => 2.5
+            ];
+            
+            $additionalCost += $packagingPrices[$orderData['packaging_type'] ?? 'mug_sublim'] ?? 0;
+            $additionalCost += $finishingPrices[$orderData['packaging_finishing'] ?? 'none'] ?? 0;
+            $sizeMultiplier = $sizeMultipliers[$orderData['packaging_size'] ?? 'small'] ?? 1;
+        }
+        
+        // Calculate shipping cost
+        $shippingCosts = [
+            'pickup' => 0,
+            'local' => 15000,
+            'regional' => 25000,
+            'national' => 50000,
+            'express' => 75000
+        ];
+        
+        $shippingCost = $shippingCosts[$orderData['shipping_method'] ?? 'pickup'] ?? 0;
+        
+        // Calculate subtotal
+        $itemPrice = $basePrice + $additionalCost;
+        $subtotal = ($itemPrice * $sizeMultiplier) * $quantity;
+        
+        // Apply discount if promo code exists
+        $discount = 0;
+        if (!empty($orderData['promo_code'])) {
+            $promoCodes = [
+                'HEMAT10' => ['type' => 'percentage', 'value' => 0.10],
+                'NEWUSER15' => ['type' => 'percentage', 'value' => 0.15],
+                'GRATIS50' => ['type' => 'fixed', 'value' => 50000]
+            ];
+            
+            $promoCode = strtoupper($orderData['promo_code']);
+            if (isset($promoCodes[$promoCode])) {
+                $promo = $promoCodes[$promoCode];
+                if ($promo['type'] === 'percentage') {
+                    $discount = $subtotal * $promo['value'];
+                } else {
+                    $discount = min($promo['value'], $subtotal);
+                }
+            }
+        }
+        
+        $subtotalAfterDiscount = $subtotal - $discount;
+        $tax = $subtotalAfterDiscount * 0.10; // 10% tax
+        $total = $subtotalAfterDiscount + $shippingCost + $tax;
+        
+        // Add calculated values to order data
+        $orderData['subtotal'] = $subtotal;
+        $orderData['shipping_cost'] = $shippingCost;
+        $orderData['discount'] = $discount;
+        $orderData['tax_amount'] = $tax;
+        $orderData['total'] = $total;
+        
+        return $orderData;
+    }
+
+    /**
+     * Calculate pricing for banner/signage orders
+     */
+    private function calculateBannerPricing($orderData)
+    {
+        $basePrices = [
+            'banner' => 35000,
+            'signage' => 100000
+        ];
+        
+        $basePrice = $basePrices[$orderData['product_type']] ?? 35000;
+        $quantity = (int)($orderData['quantity'] ?? 1);
+        $additionalCost = 0;
+        $sizeMultiplier = 1;
+        
+        // Calculate costs based on product type
+        if ($orderData['product_type'] === 'banner') {
+            // Banner type prices
+            $bannerTypePrices = [
+                'x_banner' => 35000,
+                'roll_banner' => 45000,
+                'backdrop' => 75000,
+                'spanduk' => 25000,
+                'flag_banner' => 40000
+            ];
+            
+            // Material prices
+            $materialPrices = [
+                'flexi_china' => 0,
+                'flexi_korea' => 15000,
+                'vinyl_cutting' => 25000,
+                'kanvas' => 20000,
+                'tetron' => 30000
+            ];
+            
+            // Size multipliers
+            $sizeMultipliers = [
+                '60x160' => 1,
+                '80x200' => 1.5,
+                '100x200' => 2,
+                '120x200' => 2.5,
+                'custom' => 1
+            ];
+            
+            // Finishing prices
+            $finishingPrices = [
+                'none' => 0,
+                'laminating' => 10000,
+                'eyelets' => 5000,
+                'wind_resistant' => 15000
+            ];
+            
+            $basePrice = $bannerTypePrices[$orderData['banner_type'] ?? 'x_banner'] ?? 35000;
+            $additionalCost += $materialPrices[$orderData['banner_material'] ?? 'flexi_china'] ?? 0;
+            $additionalCost += $finishingPrices[$orderData['banner_finishing'] ?? 'none'] ?? 0;
+            $sizeMultiplier = $sizeMultipliers[$orderData['banner_size'] ?? '60x160'] ?? 1;
+            
+        } elseif ($orderData['product_type'] === 'signage') {
+            // Signage type prices
+            $signageTypePrices = [
+                'neon_box' => 500000,
+                'acrylic_sign' => 200000,
+                'led_sign' => 750000,
+                'metal_sign' => 300000,
+                'wooden_sign' => 250000
+            ];
+            
+            // Material prices
+            $materialPrices = [
+                'acrylic' => 0,
+                'aluminum' => 50000,
+                'stainless' => 100000,
+                'brass' => 150000,
+                'wood' => 25000
+            ];
+            
+            $basePrice = $signageTypePrices[$orderData['signage_type'] ?? 'neon_box'] ?? 500000;
+            $additionalCost += $materialPrices[$orderData['signage_material'] ?? 'acrylic'] ?? 0;
+        }
+        
+        // Calculate shipping cost
+        $shippingCosts = [
+            'pickup' => 0,
+            'local' => 25000,
+            'regional' => 50000,
+            'national' => 100000,
+            'express' => 150000
+        ];
+        
+        $shippingCost = $shippingCosts[$orderData['shipping_method'] ?? 'pickup'] ?? 0;
+        
+        // Calculate subtotal
+        $itemPrice = $basePrice + $additionalCost;
+        $subtotal = ($itemPrice * $sizeMultiplier) * $quantity;
+        
+        // Apply discount if promo code exists
+        $discount = 0;
+        if (!empty($orderData['promo_code'])) {
+            $promoCodes = [
+                'HEMAT10' => ['type' => 'percentage', 'value' => 0.10],
+                'NEWUSER15' => ['type' => 'percentage', 'value' => 0.15],
+                'GRATIS50' => ['type' => 'fixed', 'value' => 50000]
+            ];
+            
+            $promoCode = strtoupper($orderData['promo_code']);
+            if (isset($promoCodes[$promoCode])) {
+                $promo = $promoCodes[$promoCode];
+                if ($promo['type'] === 'percentage') {
+                    $discount = $subtotal * $promo['value'];
+                } else {
+                    $discount = min($promo['value'], $subtotal);
+                }
+            }
+        }
+        
+        $subtotalAfterDiscount = $subtotal - $discount;
+        $tax = $subtotalAfterDiscount * 0.10; // 10% tax
+        $total = $subtotalAfterDiscount + $shippingCost + $tax;
+        
+        // Add calculated values to order data
+        $orderData['subtotal'] = $subtotal;
+        $orderData['shipping_cost'] = $shippingCost;
+        $orderData['discount'] = $discount;
+        $orderData['tax_amount'] = $tax;
+        $orderData['total'] = $total;
+        
+        return $orderData;
+    }
+
+    /**
+     * Calculate pricing for UV printing orders
+     */
+    private function calculateUvPrintingPricing($orderData)
+    {
+        // UV Item base prices
+        $uvItemPrices = [
+            'id_card' => 7000,
+            'lanyard' => 15000,
+            'tiket_gelang' => 4000,
+            'casing_hp' => 30000,
+            'plakat_akrilik' => 50000,
+            'gantungan_kunci' => 8000,
+            'media_flatbed' => 25000
+        ];
+        
+        $basePrice = $uvItemPrices[$orderData['uv_item_type'] ?? 'id_card'] ?? 7000;
+        $quantity = (int)($orderData['quantity'] ?? 1);
+        
+        // Printing side additional cost
+        $printingSideCost = 0;
+        if (($orderData['printing_side'] ?? '1_sisi') === '2_sisi') {
+            $printingSideCost = 15000;
+        }
+        
+        // Calculate shipping cost
+        $shippingCosts = [
+            'pickup' => 0,
+            'local' => 15000,
+            'regional' => 25000,
+            'national' => 50000,
+            'express' => 75000
+        ];
+        
+        $shippingCost = $shippingCosts[$orderData['shipping_method'] ?? 'pickup'] ?? 0;
+        
+        // Calculate subtotal
+        $itemPrice = $basePrice + $printingSideCost;
+        $subtotal = $itemPrice * $quantity;
+        
+        // Apply discount if promo code exists
+        $discount = 0;
+        if (!empty($orderData['promo_code'])) {
+            $promoCodes = [
+                'HEMAT10' => ['type' => 'percentage', 'value' => 0.10],
+                'NEWUSER15' => ['type' => 'percentage', 'value' => 0.15],
+                'GRATIS50' => ['type' => 'fixed', 'value' => 50000]
+            ];
+            
+            $promoCode = strtoupper($orderData['promo_code']);
+            if (isset($promoCodes[$promoCode])) {
+                $promo = $promoCodes[$promoCode];
+                if ($promo['type'] === 'percentage') {
+                    $discount = $subtotal * $promo['value'];
+                } else {
+                    $discount = min($promo['value'], $shippingCost);
+                    if ($promo['value'] >= $shippingCost) {
+                        $shippingCost = 0;
+                        $discount = $promo['value'];
+                    }
+                }
+            }
+        }
+        
+        $subtotalAfterDiscount = $subtotal - $discount;
+        $tax = ($subtotalAfterDiscount + $shippingCost) * 0.11; // 11% tax (PPN)
+        $total = $subtotalAfterDiscount + $shippingCost + $tax;
+        
+        // Add calculated values to order data
+        $orderData['subtotal'] = $subtotal;
+        $orderData['shipping_cost'] = $shippingCost;
+        $orderData['discount'] = $discount;
+        $orderData['tax_amount'] = $tax;
+        $orderData['total'] = $total;
+        
+        return $orderData;
     }
 
     /**
@@ -391,8 +736,23 @@ class ServiceController extends Controller
         // Get order data from session or request
         $orderData = $request->session()->get('order_data', []);
         
+        // Fallback: get data from URL parameters if session is empty
+        if (empty($orderData) && $request->has(['product_type', 'customer_name'])) {
+            $orderData = [
+                'product_type' => $request->input('product_type'),
+                'quantity' => $request->input('quantity', 1),
+                'customer_name' => $request->input('customer_name'),
+                'customer_email' => $request->input('customer_email'),
+                'customer_phone' => $request->input('customer_phone'),
+                'total' => $request->input('total', 0)
+            ];
+            
+            // Store in session for consistency
+            $request->session()->put('order_data', $orderData);
+        }
+        
         if (empty($orderData)) {
-            return redirect()->route('services.fancy-paper')->with('error', 'Tidak ada data pesanan. Silakan buat pesanan terlebih dahulu.');
+            return redirect()->route('services.banner')->with('error', 'Tidak ada data pesanan. Silakan buat pesanan terlebih dahulu.');
         }
         
         return view('checkout', compact('orderData'));
